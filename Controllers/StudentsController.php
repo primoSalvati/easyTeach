@@ -218,7 +218,7 @@ class StudentsController
                 $studentUpdated = $sm->editStudent($validData['name'], $validData['surname'], $validData['email'], $validData['phone'], $validData['date_of_birth'], $validData['student_price'], $validData['student_source'], $validData['instrument'], $validData['lesson_length'], $validData['student_regularity'], $sid);
 
                 if ($studentUpdated === true) {
-                    $f3->set('alertSuccess', 'New student successfully updated!');
+                    $f3->set('alertSuccess', 'Student successfully updated!');
                 } else {
                     $f3->set('alertError', 'Error! The student couldn\'t be updated.');
                 }

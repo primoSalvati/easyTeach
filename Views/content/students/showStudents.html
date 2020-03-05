@@ -10,11 +10,12 @@
             <th>Details</th>
             <th>Edit</th>
             <th>Delete</th>
+            <th>Lesson</th>
         </tr>
     </thead>
     <tbody>
 
-        <repeat group="{{ @students }}" value="{{ @row }}" counter="{{ @ctr }}"> 
+        <repeat group="{{ @students }}" value="{{ @row }}" counter="{{ @ctr }}">
             <tr>
                 <td>{{ @ctr }}</td>
                 <td>{{ @row.name }}</td>
@@ -23,10 +24,16 @@
                 <td><a href="/students/seeAllStudents/{{ @row.id }}/edit">Edit</a></td>
                 <td><button class="pure-button btn-delete"
                         data-url="/students/seeAllStudents/{{ @row.id }}/delete">Delete</button></td>
+                <td>
+                    <form>
+                        <button type="submit" class="pure-button"
+                            formaction="/lessons/seeAllStudents/{{ @row.id }}/lessonForm">
+                            Select for a lesson
+                        </button>
+                    </form>
+                </td>
             </tr>
-
         </repeat>
 
     </tbody>
 </table>
-

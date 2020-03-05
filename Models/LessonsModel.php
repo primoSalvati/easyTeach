@@ -41,13 +41,16 @@ class LessonsModel extends Model
 
 
     public function lessonDetails(int $id)
-    {/* problem: if i customize the date like below, the browser, on edit, diesn't receive the rigth value */
+    {/* problem: if i customize the date like below, the browser, on edit, doesn't receive the rigth value */
         $lessonDetails = $this->db->exec(
             'SELECT events.*,
             /* DATE_FORMAT(events.date,"%d %b %Y") as `date`, */
             students.name,
             students.surname,
+            /* i extract these two values (instruments.id and lesson_length_id because , on lesson edit, the select boxes were not properly working with the attribute selected) */
+            instruments.id AS instruments_id,
             instruments.type AS instrument,
+            lesson_length.id AS lesson_length_id,
             lesson_length.length AS lesson_length
             
             FROM `events` 
@@ -69,7 +72,7 @@ class LessonsModel extends Model
     }
 
 /* Achtung, questa funzione mi serve dopo, se voglio vedere tutte le lezioni precedenti di uno studente*/
-    public function allLessonsForStudent(int $id)
+    public function allLessonsForAStudent(int $id)
     {
         $lessonDetails = $this->db->exec(
             'SELECT * FROM events WHERE events.students_id = ?', $id);
@@ -81,6 +84,16 @@ class LessonsModel extends Model
         }
 
         return $lessonDetails[0];
+    }
+
+
+/* ACHTUNG, i can't edit the instrument until i make the lookup table instruments_students, see what about lesson length (it will have to do with calendar, later) */
+    public function editLesson($students_id, $date, $time, $earning, $address, $notes, int $id): bool
+    {
+/* un problema potrebbe essere la Reihenfolge! */
+        $lessonUpdated = $this->db->exec('UPDATE `events` SET `students_id` = ?, `date` = ?, `time` = ?, `earning` = ?, `address` = ?, `notes` = ? WHERE `events`.`id` = ?', [$students_id, $date, $time, $earning, $address, $notes, $id]);
+
+        return $lessonUpdated;
     }
     
 }

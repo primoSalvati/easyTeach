@@ -268,18 +268,20 @@ class LessonsController
                 echo Template::instance()->render('/Views/index.html');
                 
             } else {
-                $sm = new \Models\LessonsModel();
-                $lessonUpdated = $sm->editStudent($validData['event_types_id'], $validData['students_id'],$validData['date'], $validData['time'], $validData['earning'], $validData['address'], $validData['notes'], $lid);
+                $lm = new \Models\LessonsModel();
+                $lessonUpdated = $lm->editLesson($validData['students_id'], $validData['date'], $validData['time'], $validData['earning'], $validData['address'], $validData['notes'], $lid);
 
-                if ($studentUpdated === true) {
-                    $f3->set('alertSuccess', 'New student successfully updated!');
+                var_dump($validData);
+
+                if ($lessonUpdated === true) {
+                    $f3->set('alertSuccess', 'Lesson successfully updated!');
                 } else {
-                    $f3->set('alertError', 'Error! The student couldn\'t be updated.');
+                    $f3->set('alertError', 'Error! The lesson couldn\'t be updated.');
                 }
 
-                $f3->set('pageTitle', 'Students');
-                $f3->set('mainHeading', 'Students');
-                $f3->set('content', 'Views/content/students/studentInserted.html');
+                $f3->set('pageTitle', 'Lessons');
+                $f3->set('mainHeading', 'lessons');
+                $f3->set('content', 'Views/content/lessons/lessonInserted.html');
 
                 echo Template::instance()->render('/Views/index.html');
             }

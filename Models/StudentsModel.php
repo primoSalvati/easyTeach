@@ -117,10 +117,10 @@ class StudentsModel extends Model
     {
         if ($date_of_birth === '') {
             $date_of_birth = null;
-        } /* elseif ($student_price === '') {
-            $student_price = 0;
-        } */
+        } 
+        
         $isStored = $this->db->exec('UPDATE `students` SET `name` = ?, `surname` = ?, `email` = ?, `phone` = ?, `date_of_birth` = ?, `student_price` = ?, `student_sources_id` = ?, `instruments_id` = ?, `lesson_length_id` = ?, `student_regularity_id` = ? WHERE `students`.`id` = ?', [$name, $surname, $email, $telephone, $date_of_birth, $student_price, valOrNull($student_source), valOrNull($instrument), valOrNull($lesson_length), valOrNull($student_regularity), $id]);
+
         return $isStored;
     }
 
