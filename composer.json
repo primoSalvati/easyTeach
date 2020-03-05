@@ -1,0 +1,12 @@
+{
+    "require": {
+        "wixel/gump": "dev-master",
+        "bcosca/fatfree": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Controller\\": "Controller",
+            "Models\\": "Models"
+        }
+    }
+}

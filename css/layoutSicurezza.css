@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 86%;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 1.5em;
+}
+
+.pure-button {
+    background-color: #0074D9;
+
+    color: white;
+}
+
+.site-header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #0297FC;
+    text-align: center;
+    padding: 1.5em 0;
+}
+
+.site-header a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.site-header a:visited {
+    text-decoration: none;
+    color: #333333;
+}
+
+.site-header a:active {
+    text-decoration: none;
+}
+
+.page-title {
+    margin-left: -20px;
+    margin-bottom: 15px;
+}
+
+main {
+    padding: 1.5em 1em;
+}
+
+.field-error {
+    color: #900;
+    font-size: 0.875em;
+}
+
+.alert-success {
+    width: fit-content;
+    color: white;
+    background-color: #080;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    margin: 1em 0;
+}
+
+.alert-error {
+    width: fit-content;
+    color: white;
+    background-color: #800;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    margin: 1em 0;
+}
+
+.site-footer {
+
+    background-color: #0297FC;
+    text-align: center;
+    padding: 1.5em 0;
+}
+
+th {
+    background-color: #0297FC;
+}
+
+.site-footer button {
+    background-color: #0074D9;
+
+}
+
+.site-header button {
+    align-self: baseline;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+}
+
+.input-row label {
+    margin-left: 4px;
+}
+
+.logo {
+    width: 7em;
+    height: 7em;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+}
