@@ -38,3 +38,18 @@ function valOrNull($val) {
 
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
+
+
+function dump_and_die($data) {
+    echo '<pre>';
+    var_dump($data);
+    exit;
+    echo '</pre>';
+}
+
+function dumpthisvalue($data)
+{
+    echo '<pre>';
+    var_dump($data);
+    echo '</pre>';
+}

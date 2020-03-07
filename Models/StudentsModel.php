@@ -27,7 +27,7 @@ class StudentsModel extends Model
         $studentDetails = $this->db->exec(
             'SELECT students.*, 
             /* date format customized */
-            /* DATE_FORMAT(students.date_of_birth,"%d %b %Y") as `date_of_birth`, */
+            DATE_FORMAT(students.date_of_birth,"%d %b %Y") as `format_date_of_birth`,
             student_sources.source AS source,
             instruments.type AS instrument,
             lesson_length.length AS length,

@@ -5,6 +5,10 @@ namespace Controllers;
 
 use \Template;
 
+use function Models\debug_to_console;
+use function Models\dump_and_die;
+use function Models\dumpthisvalue;
+use function Models\valOrNull;
 
 class LessonsController
 {
@@ -70,6 +74,9 @@ class LessonsController
     {
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
+
+
+            
 /* TODO: important! when receiving the lesson form, i should see at least the last notes, or even have a link to a page with all notes from the one student! */
             $gump->validation_rules(array(
                 'date' => 'required|date',
@@ -98,7 +105,6 @@ class LessonsController
 
                 $f3->set('values', $_POST);
 
-                /* var_dump($_POST); */
 
                 date_default_timezone_set('Europe/Vienna');
 
@@ -141,9 +147,8 @@ class LessonsController
         $lessons = $lm->lessons();
         $f3->set('lessons', $lessons);
 
-        /* print_r($lessons); */
 
-        /* $f3->set('jScripts', ['/js/student.js']); */
+        $f3->set('jScripts', ['/js/student.js']); 
 
         $f3->set('pageTitle', 'Lessons List');
         $f3->set('mainHeading', 'Lessons List');
@@ -174,7 +179,7 @@ class LessonsController
 
         $f3->set('lessonDetails', $lessonDetails);
 
-/*         $f3->set('jScripts', ['/js/studentDetails.js']); */
+        $f3->set('jScripts', ['/js/lessonDetails.js']);
 
         $f3->set('pageTitle', 'Lesson Details');
         $f3->set('mainHeading', 'Lesson Details');
@@ -201,7 +206,6 @@ class LessonsController
             $f3->set('mainHeading', 'Edit Lesson');
             $f3->set('content', '/Views/content/lessons/lessonForm.html');
 
-            var_dump($values);
 
             echo Template::instance()->render('/Views/index.html');
         }
@@ -233,25 +237,30 @@ class LessonsController
             $lm = new \Models\LessonsModel();
             $values = $lm->lessonDetails($lid);
         }
-
+        
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
 
+           
             $gump->validation_rules(array(
-                'name' => 'required|max_len, 50',
-                'surname' => 'required|max_len, 50',
-                'email'    => 'valid_email',
-                'student_price'    => 'max_len, 4',
+                'date' => 'required|date',
+                'time' => 'required',
+                'earning' => 'required|numeric',
+                'address' => 'max_len, 50',
+                'notes' => 'max_len, 2500',
+                'links' => 'valid_url',
             ));
+
             $gump->filter_rules(array(
-                'name' => 'trim|sanitize_string',
-                'surname' => 'trim',
-                'email'    => 'trim|sanitize_email',
-                'phone'   => 'trim',
-                'student_price'    => 'trim',
+                'earning' => 'trim|sanitize_string',
+                'address' => 'trim|sanitize_string',
+                'notes' => 'sanitize_string',
+                'files' => 'sanitize_string',
+                'links' => 'trim|sanitize_string',
             ));
 
             $validData = $gump->run($_POST);
+            
 
             if ($validData === false) {
                 $errors = $gump->get_errors_array();
@@ -270,9 +279,7 @@ class LessonsController
             } else {
                 $lm = new \Models\LessonsModel();
                 $lessonUpdated = $lm->editLesson($validData['students_id'], $validData['date'], $validData['time'], $validData['earning'], $validData['address'], $validData['notes'], $lid);
-
-                var_dump($validData);
-
+ 
                 if ($lessonUpdated === true) {
                     $f3->set('alertSuccess', 'Lesson successfully updated!');
                 } else {
@@ -280,7 +287,7 @@ class LessonsController
                 }
 
                 $f3->set('pageTitle', 'Lessons');
-                $f3->set('mainHeading', 'lessons');
+                $f3->set('mainHeading', 'Lessons');
                 $f3->set('content', 'Views/content/lessons/lessonInserted.html');
 
                 echo Template::instance()->render('/Views/index.html');
@@ -289,7 +296,20 @@ class LessonsController
     }
 
 
-
+    public function deleteLesson($f3, $params)
+    {
+        $lid = $params['lid'];
+        if (!filter_var($lid, FILTER_VALIDATE_INT)) {
+            echo 'Error: the lesson can\'t be canceled';
+        } else {
+            $lm = new \Models\LessonsModel();
+            if ($lm->deleteLesson($lid)) {
+                echo 'Deleted';
+            } else {
+                echo 'Error';
+            }
+        }
+    }
 
 
 

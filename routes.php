@@ -10,6 +10,7 @@ $f3->route('GET @studentDetails: /students/seeAllStudents/@sid/details', 'Contro
 $f3->route('GET @addNewStudent: /students/addStudent', 'Controllers\StudentsController->getForm');
 $f3->route('POST /students/addStudent', 'Controllers\StudentsController->postForm');
 $f3->route('GET /students/seeAllStudents/@sid/delete', 'Controllers\StudentsController->deleteStudent');
+/* ACHTUNG! do i need a second route to delete a student from the page details? maybe only because of the JavaScript commands... */
 $f3->route('GET /students/seeAllStudents/@sid/details/delete', 'Controllers\StudentsController->deleteStudent');
 $f3->route('GET /students/seeAllStudents/@sid/edit', 'Controllers\StudentsController->getCompiledForm');
 $f3->route('POST /students/seeAllStudents/@sid/edit', 'Controllers\StudentsController->editStudent');
@@ -25,11 +26,19 @@ $f3->route('GET @seeLessons: /lessons/lessonsList', 'Controllers\LessonsControll
 $f3->route('GET /lessons/lessonsList/@lid/details', 'Controllers\LessonsController->lessonDetails');
 $f3->route('GET /lessons/lessonsList/@lid/edit', 'Controllers\LessonsController->getCompiledForm');
 $f3->route('POST /lessons/lessonsList/@lid/edit', 'Controllers\LessonsController->editLesson');
+$f3->route('GET /lessons/lessonsList/@lid/delete', 'Controllers\LessonsController->deleteLesson');
+$f3->route('GET /lessons/lessonsList/@lid/details/delete', 'Controllers\StudentsController->deleteLesson');
 
-
+/* TODO: weil ich das gleiche .js File für delete Lesson und Student verwende, (wenn es ok ist), sollte ich das File umbenennen--niht mehr student.js sondern delete.js */
 /* TODO: validare nel server se uno studente esiste già! */
 
 /* ROUTES for the section: calendar */
 
 $f3->route('GET @calendar: /calendar', 'Controllers\CalendarController->calendar');
+
+/* ROUTES for the section: earnings */
+
+$f3->route('GET @displayEarnings: /earnings', 'Controllers\EarningsController->display');
+$f3->route('GET @filterEarnings: /earnings/filter', 'Controllers\EarningsController->filterOptions');
+$f3->route('POST @insertEarning: /earnings/insert', 'Controllers\EarningsController->insert');
 

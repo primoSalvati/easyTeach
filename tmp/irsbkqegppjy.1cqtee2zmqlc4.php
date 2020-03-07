@@ -1,5 +1,3 @@
-<?= (var_dump($lessonDetails))."
-" ?>
 
 <table class="pure-table pure-table-bordered" id="detailsTable">
     <tbody>
@@ -9,7 +7,7 @@
         </tr>
         <tr>
             <td><strong>Date</strong></td>
-            <td><?= ($lessonDetails['date']) ?></td>
+            <td><?= ($lessonDetails['format_date']) ?></td>
         </tr>
         <tr>
             <td><strong>Time</strong></td>
@@ -46,7 +44,7 @@
     <button type="submit" formaction="<?= (Base::instance()->alias('seeLessons')) ?>" class="pure-button">See All</button>
 
     <button class="pure-button btn-delete"
-        data-url="/students/seeAllStudents/<?= ($studentDetails['id']) ?>/details/delete">Delete</button>
+        data-url="/lessons/lessonsList/<?= ($studentDetails['id']) ?>/delete">Delete</button>
 
 
     <button class="pure-button" formaction="/lessons/seeAllStudents/<?= ($lessonDetails['students_id']) ?>/lessonForm">Select

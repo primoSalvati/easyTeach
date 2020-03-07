@@ -17,7 +17,7 @@
                 <td><a href="/lessons/lessonsList/<?= ($row['id']) ?>/details">Details</a></td>
                 <td><a href="/lessons/lessonsList/<?= ($row['id']) ?>/edit">Edit</a></td>
                 <td><button class="pure-button btn-delete"
-                        data-url="/students/seeAllStudents/<?= ($row['id']) ?>/delete">Delete</button></td>
+                        data-url="/lessons/lessonsList/<?= ($row['id']) ?>/delete">Delete</button></td>
             </tr>
 
         <?php endforeach; ?>

@@ -44,7 +44,7 @@ class LessonsModel extends Model
     {/* problem: if i customize the date like below, the browser, on edit, doesn't receive the rigth value */
         $lessonDetails = $this->db->exec(
             'SELECT events.*,
-            /* DATE_FORMAT(events.date,"%d %b %Y") as `date`, */
+            DATE_FORMAT(events.date,"%d %b %Y") as `format_date`,
             students.name,
             students.surname,
             /* i extract these two values (instruments.id and lesson_length_id because , on lesson edit, the select boxes were not properly working with the attribute selected) */
@@ -62,7 +62,7 @@ class LessonsModel extends Model
 
             WHERE events.id = ?', $id);
        
-            /* debug_to_console($id); */
+       
 
         if (count($lessonDetails) === 0) {
             return [];
@@ -77,7 +77,7 @@ class LessonsModel extends Model
         $lessonDetails = $this->db->exec(
             'SELECT * FROM events WHERE events.students_id = ?', $id);
        
-            debug_to_console($id);
+         
 
         if (count($lessonDetails) === 0) {
             return [];
@@ -94,6 +94,20 @@ class LessonsModel extends Model
         $lessonUpdated = $this->db->exec('UPDATE `events` SET `students_id` = ?, `date` = ?, `time` = ?, `earning` = ?, `address` = ?, `notes` = ? WHERE `events`.`id` = ?', [$students_id, $date, $time, $earning, $address, $notes, $id]);
 
         return $lessonUpdated;
+    }
+
+
+    /**
+     * deleteLesson, cancels lesson, given the id
+     *
+     * @param integer $id
+     * 
+     * @return void
+     */
+    public function deleteLesson(int $id)
+    {
+        $isDeleted = $this->db->exec('DELETE FROM `events` WHERE `id` = ?', $id);
+        return $isDeleted;
     }
     
 }

@@ -4,7 +4,7 @@
             <th>Name</th>
             <th>Surname</th>
             <th>Details</th>
-            <th>Select</th>
+            <th>Select for a Lesson</th>
         </tr>
     </thead>
     <tbody>

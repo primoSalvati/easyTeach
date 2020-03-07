@@ -4,7 +4,7 @@
 
     // jedem Löschen Button ein click event hinzufügen
     btnDelete.click(function (e) {
-        let deleteOk = confirm('Are you sure to cancel this student?');
+        let deleteOk = confirm('Are you sure to cancel this row?');
         // Abbrechen, wenn nicht ok geklickt wurde
         if (!deleteOk) {
             return false;
@@ -15,7 +15,7 @@
         let url = button.data('url');
         // die eben ermittelte Adresse per AJAX aufrufen
         $.get(url, function (data) {
-            if (data === 'Student_deleted') {
+            if (data === 'Deleted') {
                 // Bei Erfolg die Zeile aus der Tabelle löschen:
                 // geklickter_button.nächst_höheres_tr.löschen()
                 button.closest('tr').remove();

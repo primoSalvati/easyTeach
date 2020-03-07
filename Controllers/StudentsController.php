@@ -308,7 +308,7 @@ class StudentsController
         } else {
             $sm = new \Models\StudentsModel();
             if ($sm->deleteStudent($sid)) {
-                echo 'Student_deleted';
+                echo 'Deleted';
             } else {
                 echo 'Error';
             }

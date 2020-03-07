@@ -4,7 +4,7 @@
 
 
     btnDelete.click(function (e) {
-        let deleteOk = confirm('Are you sure to cancel this student?');
+        let deleteOk = confirm('Are you sure to cancel this lesson?');
 
         if (!deleteOk) {
             return false;
@@ -14,16 +14,15 @@
         let url = button.data('url');
 
         $.get(url, function (data) {
-            /* console.log(data); return false; */
-                if (data === 'Deleted') {
-        
+            if (data === 'Deleted') {
+
+
                 button.closest('#detailsTable').remove();
 
-                window.location.replace("/students/seeAllStudents");
-  /*      alternativa, che comunque non funziona     window.location.href = "/students/seeAllStudents"; */
+                window.location.replace("/lessons/lessonsList");
             } else {
                 alert('The student couldn\'t be canceled!');
-            } 
+            }
         });
     });
 }());

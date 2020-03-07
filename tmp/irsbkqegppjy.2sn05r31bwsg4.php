@@ -1,6 +1,5 @@
 <?php echo $this->render('/Views/modules/alert.html',NULL,get_defined_vars(),0); ?>
-<?= (var_dump($values))."
-" ?>
+
 <form action="" method="post" class="pure-form pure-form-stacked">
     <input type="hidden" name="event_types_id" value="1">
     <!-- the ternary operators below (if/else statements) are meant to receive the data in the form in case of unsuccessfull validation -->
@@ -35,7 +34,7 @@
                     <select name="instrument">
         <!-- since, after the validation, the value instruments_id was appearing with another key name (instrument) i made the OR statement, i could also have changed the name attribute of the select tag above, but the i would need to check in the SQL statements...-->
         <!-- ACHTUNG: if the instrument is empty, it will not be selected, but if i put the empty value as the first option, and there's no other selected values, this empty will be the shown one...it is a trick, and it is working also on studentForm, as well as here below in lesson length -->
-                              <option value="">---</option>
+                <option value="">---</option>
                       <?php foreach (($instruments?:[]) as $instrument): ?>
                          <option value="<?= ($instrument['id']) ?>"
                            <?= (($instrument['id'] == $values['instruments_id'] || $instrument['id'] == $values['instrument']) ? ('selected') : ('')) ?>>
