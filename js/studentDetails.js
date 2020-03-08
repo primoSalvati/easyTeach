@@ -19,8 +19,8 @@
         
                 button.closest('#detailsTable').remove();
 
-                window.location.replace("/students/seeAllStudents");
-  /*      alternativa, che comunque non funziona     window.location.href = "/students/seeAllStudents"; */
+                window.location.replace("/students");
+  /*      alternativa, che comunque non funziona     window.location.href = "/students"; */
             } else {
                 alert('The student couldn\'t be canceled!');
             } 

@@ -38,16 +38,16 @@
 </br>
 <form class="pure-form pure-form-stacked">
 
-    <button type="submit" formaction="/lessons/lessonsList/{{ @lessonDetails.id }}/edit"
+    <button type="submit" formaction="/lessons/{{ @lessonDetails.id }}/edit"
         class="pure-button">Edit</button>
 
-    <button type="submit" formaction="{{ 'seeLessons' | alias }}" class="pure-button">See All</button>
+    <button type="submit" formaction="{{ 'lessons' | alias }}" class="pure-button">See All</button>
 
     <button class="pure-button btn-delete"
-        data-url="/lessons/lessonsList/{{ @studentDetails.id }}/delete">Delete</button>
+        data-url="/lessons/{{ @studentDetails.id }}/delete">Delete</button>
 
 
-    <button class="pure-button" formaction="/lessons/seeAllStudents/{{ @lessonDetails.students_id }}/lessonForm">Select
+    <button class="pure-button" formaction="/lessons/{{ @lessonDetails.students_id }}/lessonForm">Select
         for new lesson</button>
 
 </form>

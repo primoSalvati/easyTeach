@@ -47,13 +47,13 @@
 </br>
 <form class="pure-form pure-form-stacked">
 
-    <button type="submit" formaction="/students/seeAllStudents/{{ @studentDetails.id }}/edit"
+    <button type="submit" formaction="/students/{{ @studentDetails.id }}/edit"
         class="pure-button">Edit</button>
 
-    <button type="submit" formaction="/students/seeAllStudents" class="pure-button">See All</button>
+    <button type="submit" formaction="/students" class="pure-button">See All</button>
 
     <button class="pure-button btn-delete"
-        data-url="/students/seeAllStudents/{{ @studentDetails.id }}/details/delete">Delete</button>
+        data-url="/students/{{ @studentDetails.id }}/details/delete">Delete</button>
 
 
     <button class="pure-button"

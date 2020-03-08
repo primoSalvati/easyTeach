@@ -12,19 +12,19 @@ use function Models\valOrNull;
 
 class LessonsController
 {
-    /**
-     * Shows the main page of the "Lessons" section, calling the buttons to go to the further sections
-     *
-     * @param [type] $f3
-     * @param [type] $params
-     * @return void
-     */
     public function index($f3, $params)
     {
 
+        $lm = new \Models\LessonsModel();
+        $lessons = $lm->lessons();
+        $f3->set('lessons', $lessons);
+
+
+        $f3->set('jScripts', ['/js/student.js']);
+
         $f3->set('pageTitle', 'Lessons');
         $f3->set('mainHeading', 'Lessons');
-        $f3->set('content', 'Views/content/lessons/lessons.html');
+        $f3->set('content', 'Views/content/lessons/lessonsList.html');
 
         echo Template::instance()->render('/Views/index.html');
     }
@@ -141,22 +141,6 @@ class LessonsController
     }
 
 
-    public function lessonsList($f3, $params) {
-
-        $lm = new \Models\LessonsModel();
-        $lessons = $lm->lessons();
-        $f3->set('lessons', $lessons);
-
-
-        $f3->set('jScripts', ['/js/student.js']); 
-
-        $f3->set('pageTitle', 'Lessons List');
-        $f3->set('mainHeading', 'Lessons List');
-        $f3->set('content', 'Views/content/lessons/lessonsList.html');
-
-        echo Template::instance()->render('/Views/index.html');
-
-    }
 
 
     public function lessonDetails($f3, $params)

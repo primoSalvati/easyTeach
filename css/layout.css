@@ -17,6 +17,10 @@
     color: white;
 }
 
+body {
+    text-align: center;
+}
+
 .site-header {
     display: flex;
     justify-content: center;
@@ -45,35 +49,58 @@
     margin-bottom: 15px;
 }
 
- nav {
-/*      height: 4em; */
-     background-color: #0074D9;
- }
+nav {
+    /*      height: 4em; */
+    background-color: #0074D9;
+}
 
- nav a {
-     color: white;
-     text-decoration: none;
- }
+nav a {
+    color: white;
+    text-decoration: none;
+}
 
- nav a:hover {
-     color: #ddd;
- }
+nav a:hover {
+    color: #ddd;
+}
 
- nav ul {
-     display: table;
-     width: 100%;
-     margin: auto;
-     padding: 0px;
- }
+nav ul {
+    display: table;
+    width: 100%;
+    margin: auto;
+    padding: 0px;
+}
 
- nav li {
-     display: table-cell;
-     text-align: center;
- }
+nav li {
+    display: table-cell;
+    text-align: center;
+}
 
 main {
     padding: 1.5em 1em;
+    /* text-align: center; */
 }
+
+/* main table li {
+    
+    text-align: center;
+} */
+
+table.pure-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form.pure-form .pure-form-stacked {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 
+    form.pure-form {
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    } */
 
 .field-error {
     color: #900;
@@ -104,9 +131,9 @@ main {
     text-align: center;
     padding: 1.5em 0;
     color: white;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    
+/*     display: grid;
+    grid-template-columns: 50% 50%; */
+
 }
 
 
@@ -114,24 +141,24 @@ th {
     background-color: #0297FC;
     color: white;
 }
-
-.site-footer button {
+/* for the button back on the footer */
+/* .site-footer button {
     background-color: #0074D9;
     grid-row-start: 1;
     margin-right: 27em;
-    
-}
+
+} */
 
 
-.site-footer a:hover {
-     color: #ddd;
- }
-
- .site-footer span{
-     margin-right: 1em;
-     margin-top: 10px;
-     text-align: right;
- }
+/* .site-footer a:hover {
+    color: #ddd;
+} */
+/* to keep the copyright sgn if there is a back button */
+/* .site-footer span {
+    margin-right: 1em;
+    margin-top: 10px;
+    text-align: right;
+} */
 
 
 
@@ -155,4 +182,25 @@ a:hover,
 a:active {
     text-decoration: none;
 }
+
+main a {
+    color: #0074D9;
+}
+
+
+.display {
+    text-align: center;
+}
+
+main .display-options {
+    background-color: #0074D9;
+    color: white;
+}
+/* if i wanted to use the pure-table strpes, and change the color of every second row */
+/* .pure-table-striped tr:nth-child(2n-1) td {
+    background-color:#F0FFFF;
+         	
+} */
+
+
 

@@ -1,7 +1,7 @@
 <form class="pure-form pure-form-stacked">
     <p><button type="submit" formaction="<?= (Base::instance()->alias('addNewStudent')) ?>" class="pure-button">Add new</button></p>
 </form>
-<table class="pure-table pure-table-striped">
+<table class="pure-table pure-table-bordered">
     <thead>
         <tr>
             <th>Nr.</th>
@@ -20,10 +20,10 @@
                 <td><?= ($ctr) ?></td>
                 <td><?= ($row['name']) ?></td>
                 <td><?= ($row['surname']) ?></td>
-                <td><a href="/students/seeAllStudents/<?= ($row['id']) ?>/details">Details</a></td>
-                <td><a href="/students/seeAllStudents/<?= ($row['id']) ?>/edit">Edit</a></td>
+                <td><a href="/students/<?= ($row['id']) ?>/details">Details</a></td>
+                <td><a href="/students/<?= ($row['id']) ?>/edit">Edit</a></td>
                 <td><button class="pure-button btn-delete"
-                        data-url="/students/seeAllStudents/<?= ($row['id']) ?>/delete">Delete</button></td>
+                        data-url="/students/<?= ($row['id']) ?>/delete">Delete</button></td>
                 <td>
                     <form>
                         <button type="submit" class="pure-button"

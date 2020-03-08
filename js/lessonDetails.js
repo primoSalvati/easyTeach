@@ -19,7 +19,7 @@
 
                 button.closest('#detailsTable').remove();
 
-                window.location.replace("/lessons/lessonsList");
+                window.location.replace("/lessons");
             } else {
                 alert('The student couldn\'t be canceled!');
             }

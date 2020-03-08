@@ -4,7 +4,7 @@ namespace Models;
 abstract class Model {
     protected $db;
 
-    // TODO: Zugangsdaten in die init.php verlagern, warum?
+    // TODO: Zugangsdaten in die init.php verlagern
     
        
     /**

@@ -13,6 +13,29 @@ class StudentsController
 {
 
     /**
+     * Undocumented function
+     *
+     * @param [type] $f3
+     * @param [type] $params
+     * @return void
+     */
+    public function index($f3, $params)
+    {
+
+        $sm = new \Models\StudentsModel();
+        $students = $sm->students();
+        $f3->set('students', $students);
+
+        $f3->set('jScripts', ['/js/student.js']);
+
+        $f3->set('pageTitle', 'Students');
+        $f3->set('mainHeading', 'Students');
+        $f3->set('content', 'Views/content/students/showStudents.html');
+
+        echo Template::instance()->render('/Views/index.html');
+    }
+
+    /**
      * index, shows the main students page, which has buttons to either add a new or show all
      *
      * @param mixed $f3
@@ -20,17 +43,16 @@ class StudentsController
      * 
      * @return void
      */
-    public function index($f3, $params)
+/*   
+function deleted since the page was deleted  public function index($f3, $params)
     {
-        // https://fatfreeframework.com/3.6/framework-variables
-        // Diese drei Variablen müssen immer gesetzt werden
+
         $f3->set('pageTitle', 'Students');
         $f3->set('mainHeading', 'Students');
         $f3->set('content', 'Views/content/students/students.html');
 
-        // Template ausgeben
         echo Template::instance()->render('/Views/index.html');
-    }
+    } */
 
     /**
      * selectBox this function is meant to fetch the data of foreign keys in the table students (in database). The function is defined here as protected and then recalled in other functions with the command $this->selectBox($f3);
@@ -232,28 +254,7 @@ class StudentsController
         }
     }
 
-    /**
-     * Undocumented function
-     *
-     * @param [type] $f3
-     * @param [type] $params
-     * @return void
-     */
-    public function showAll($f3, $params)
-    {
 
-        $sm = new \Models\StudentsModel();
-        $students = $sm->students();
-        $f3->set('students', $students);
-
-        $f3->set('jScripts', ['/js/student.js']);
-
-        $f3->set('pageTitle', 'All Students');
-        $f3->set('mainHeading', 'All Students');
-        $f3->set('content', 'Views/content/students/showStudents.html');
-
-        echo Template::instance()->render('/Views/index.html');
-    }
     /**
      * Undocumented function
      *
@@ -271,9 +272,7 @@ class StudentsController
             $sm = new \Models\StudentsModel();
             $studentDetails = $sm->studentDetails($sid);
         }
-        /* this line below i don't need here, right? */
-        /* $this->selectBox($f3); */
-       /*  var_dump($studentDetails); */
+
 
         if ($studentDetails['student_price'] === '') {
             $studentDetails['student_price'] = 0;

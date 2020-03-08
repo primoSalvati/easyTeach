@@ -3,7 +3,7 @@
 <form class="pure-form pure-form-stacked">
     <button type="submit" formaction="<?= (Base::instance()->alias('addNewStudent')) ?>" class="pure-button">Add new</button>
 
-    <button type="submit" formaction="<?= (Base::instance()->alias('seeAllStudents')) ?>" class="pure-button">See all</button>
+    <button type="submit" formaction="<?= (Base::instance()->alias('students')) ?>" class="pure-button">See all</button>
 
     <button type="submit" formaction="<?= (Base::instance()->alias('lessons')) ?>" class="pure-button">Go to lesson</button>
 </form>

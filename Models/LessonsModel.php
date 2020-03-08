@@ -33,7 +33,9 @@ class LessonsModel extends Model
             
             WHERE `event_types_id` = 1
 
-            ORDER BY `date`, `time`'
+            /* to make my lessons appear from the last on top of the page */
+
+            ORDER BY `date` DESC, `time` DESC'
         
         
         );

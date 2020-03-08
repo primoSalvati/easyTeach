@@ -1,3 +1,8 @@
+<form class="pure-form pure-form-stacked">
+    <p><button type="submit" formaction="{{ 'selectStudentForALesson' | alias }}" class="pure-button">Add new
+            lesson</button>
+    </p>
+</form>
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
@@ -14,18 +19,13 @@
             <tr>
                 <td>{{ @row.date }}</td>
                 <td> {{ @row.name }} {{ @row.surname }}</td>
-                <td><a href="/lessons/lessonsList/{{ @row.id }}/details">Details</a></td>
-                <td><a href="/lessons/lessonsList/{{ @row.id }}/edit">Edit</a></td>
+                <td><a href="/lessons/{{ @row.id }}/details">Details</a></td>
+                <td><a href="/lessons/{{ @row.id }}/edit">Edit</a></td>
                 <td><button class="pure-button btn-delete"
-                        data-url="/lessons/lessonsList/{{ @row.id }}/delete">Delete</button></td>
+                        data-url="/lessons/{{ @row.id }}/delete">Delete</button></td>
             </tr>
 
         </repeat>
 
     </tbody>
 </table>
-
-<form class="pure-form pure-form-stacked">
-    <p><button type="submit" formaction="{{ 'selectStudentForALesson' | alias }}" class="pure-button">Add new lesson</button>
-    </p>
-</form>

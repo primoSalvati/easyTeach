@@ -38,13 +38,13 @@
 </br>
 <form class="pure-form pure-form-stacked">
 
-    <button type="submit" formaction="/lessons/lessonsList/<?= ($lessonDetails['id']) ?>/edit"
+    <button type="submit" formaction="/lessons/<?= ($lessonDetails['id']) ?>/edit"
         class="pure-button">Edit</button>
 
-    <button type="submit" formaction="<?= (Base::instance()->alias('seeLessons')) ?>" class="pure-button">See All</button>
+    <button type="submit" formaction="<?= (Base::instance()->alias('lessons')) ?>" class="pure-button">See All</button>
 
     <button class="pure-button btn-delete"
-        data-url="/lessons/lessonsList/<?= ($studentDetails['id']) ?>/delete">Delete</button>
+        data-url="/lessons/<?= ($studentDetails['id']) ?>/delete">Delete</button>
 
 
     <button class="pure-button" formaction="/lessons/seeAllStudents/<?= ($lessonDetails['students_id']) ?>/lessonForm">Select

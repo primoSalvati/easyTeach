@@ -4,7 +4,7 @@
     <input type="hidden" name="event_types_id" value="1">
     <!-- the ternary operators below (if/else statements) are meant to receive the data in the form in case of unsuccessfull validation -->
     <input type="hidden" name="students_id" value="<?= ((empty($values['id'])) ? ($values['students_id']) : ($values['id'])) ?>">
-    <table class="pure-table pure-table-striped" id="detailsTable">
+    <table class="pure-table pure-table-bordered" id="detailsTable">
         <tbody>
             <tr>
                 <!-- ACHTUNG! controlla cosa hai scritto qui, name mi sembra una cazzata, non ricordo ora il motivo per cui mi serve un hidden input....e perché si chiama name visto che c'è anche il surname -->

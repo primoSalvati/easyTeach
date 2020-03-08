@@ -10,10 +10,10 @@
         integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="/css/layout.css" />
 
-    <repeat group="{{ @csspaths }}" value="{{ @path }}">
+<!--     <repeat group="{{ @csspaths }}" value="{{ @path }}">
 
         <link rel="stylesheet" href="{{ @path }}">
-    </repeat>
+    </repeat> -->
 
 </head>
 
@@ -45,7 +45,7 @@
                 <li><a href="{{ 'calendar' | alias }}">
                         <h3>Calendar</h3>
                     </a></li>
-                <li><a href="addjoke.php">
+                <li><a href="{{ 'displayEarnings' | alias }}">
                         <h3>Earnings</h3>
                     </a></li>
             </ul>
@@ -67,9 +67,9 @@
         <footer class="site-footer">
 
 
-            <form class="pure-form pure form-stacked">
+<!--             <form class="pure-form pure form-stacked">
                 <button class="pure-button" onclick="history.go(-1);">Back </button>
-            </form>
+            </form> -->
 
           <span> &copy; easyTeach {{ date('Y') }}</span>
            
