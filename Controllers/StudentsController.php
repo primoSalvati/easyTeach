@@ -90,6 +90,9 @@ function deleted since the page was deleted  public function index($f3, $params)
     {
         $this->selectBox($f3);
 
+        /* $message = "Ol";
+        echo "<script type='text/javascript'>alert('$message');</script>"; */
+
         $f3->set('pageTitle', 'Add Student');
         $f3->set('mainHeading', 'Add Student');
         $f3->set('content', '/Views/content/students/studentForm.html');

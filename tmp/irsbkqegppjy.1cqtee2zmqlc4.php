@@ -47,7 +47,7 @@
         data-url="/lessons/<?= ($studentDetails['id']) ?>/delete">Delete</button>
 
 
-    <button class="pure-button" formaction="/lessons/seeAllStudents/<?= ($lessonDetails['students_id']) ?>/lessonForm">Select
+    <button class="pure-button" formaction="/lessons/<?= ($lessonDetails['students_id']) ?>/lessonForm">Select
         for new lesson</button>
 
 </form>
