@@ -43,13 +43,13 @@ class LessonsModel extends Model
 
 
     public function lessonDetails(int $id)
-    {/* problem: if i customize the date like below, the browser, on edit, doesn't receive the rigth value */
+    {
         $lessonDetails = $this->db->exec(
             'SELECT events.*,
             DATE_FORMAT(events.date,"%d %b %Y") as `format_date`,
             students.name,
             students.surname,
-            /* i extract these two values (instruments.id and lesson_length_id because , on lesson edit, the select boxes were not properly working with the attribute selected) */
+            /* i extract these two values (instruments.id and lesson_length_id) because , on lesson edit, the select boxes were not properly working with the attribute selected */
             instruments.id AS instruments_id,
             instruments.type AS instrument,
             lesson_length.id AS lesson_length_id,

@@ -30,9 +30,9 @@ class EarningsModel extends Model
  {
 
     /* the logic here will be: the user can insert another type of earning (concert, workshop, arrangement etc, whose type can be inserted in the settings, for now, until i make the settings page, i will keep the type id fixed, being a concert(2), later i should change it as '?') */
-     $earningInserted = $this->db->exec('INSERT INTO `events` (`date`, `time`, `address`, `earning`, `event_types_id`, `notes`) VALUES (?, ?, ?, ?, 2, ?)' , [$date, $time, $address, $earning, $event_types_id, $notes]);
+     $earningInserted = $this->db->exec('INSERT INTO `events` (`date`, `time`, `address`, `earning`, `event_types_id`, `notes`) VALUES (?, ?, ?, ?, ?, ?)' , [$date, $time, $address, $earning, $event_types_id, $notes]);
 
         return $earningInserted;
  }
- 
+
 }

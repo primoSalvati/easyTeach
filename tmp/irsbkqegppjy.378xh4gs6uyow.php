@@ -23,7 +23,11 @@
         <header class="site-header">
 
             <form class="header-logo">
+
+                <!-- credits for the icons to be inserted in impressum page -->
                 <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
+                <!--                 Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
+
                 <input class="logo" type="image" src="/media/saxophone.png" alt="saxophone_logo"
                     formaction="<?= (Base::instance()->alias('homepage')) ?>">
             </form>
@@ -47,6 +51,12 @@
                     </a></li>
                 <li><a href="<?= (Base::instance()->alias('displayEarnings')) ?>">
                         <h3>Earnings</h3>
+                    </a></li>
+                <li><a href="<?= (Base::instance()->alias('insertGig')) ?>">
+                        <h3>Gig</h3>
+                    </a></li>
+                <li><a href="<?= (Base::instance()->alias('displayEarnings')) ?>">
+                        <img src="/media/settings.png" alt="settings_image" class="settings-logo">
                     </a></li>
             </ul>
 

@@ -43,9 +43,6 @@
 
     <button type="submit" formaction="<?= (Base::instance()->alias('lessons')) ?>" class="pure-button">See All</button>
 
-    <button class="pure-button btn-delete"
-        data-url="/lessons/<?= ($studentDetails['id']) ?>/delete">Delete</button>
-
 
     <button class="pure-button" formaction="/lessons/<?= ($lessonDetails['students_id']) ?>/lessonForm">Select
         for new lesson</button>

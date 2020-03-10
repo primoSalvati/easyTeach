@@ -7,10 +7,10 @@ use \Template;
 class CalendarController
 {
 
-    public function calendar($f3, $params)
+    public function calendarLessons($f3, $params)
     {
         $cm = new \Models\CalendarModel();
-        $events = $cm->calendarEvents();
+        $events = $cm->calendarLessons();
         
         $f3->set('events', json_encode($events));
         $f3->set('pageTitle', 'Calendar');

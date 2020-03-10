@@ -42,4 +42,15 @@ class MultipleChoiceModel extends Model
         return $studentList;
     }
 
+    public function eventTypes()
+    {
+
+        $eventTypes = $this->db->exec('SELECT `id`, `type` FROM `event_types` ORDER BY `type`');
+
+        return $eventTypes;
+    }
+
+
+    
+
 }

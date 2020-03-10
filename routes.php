@@ -13,7 +13,6 @@ $f3->route('GET @addNewStudent: /students/addStudent', 'Controllers\StudentsCont
 $f3->route('POST /students/addStudent', 'Controllers\StudentsController->postForm');
 $f3->route('GET /students/@sid/delete', 'Controllers\StudentsController->deleteStudent');
 /* ACHTUNG! do i need a second route to delete a student from the page details? maybe only because of the JavaScript commands... */
-$f3->route('GET /students/@sid/details/delete', 'Controllers\StudentsController->deleteStudent');
 $f3->route('GET /students/@sid/edit', 'Controllers\StudentsController->getCompiledForm');
 $f3->route('POST /students/@sid/edit', 'Controllers\StudentsController->editStudent');
 /* ROUTES for the section: lessons */
@@ -29,18 +28,24 @@ $f3->route('GET /lessons/@lid/details', 'Controllers\LessonsController->lessonDe
 $f3->route('GET /lessons/@lid/edit', 'Controllers\LessonsController->getCompiledForm');
 $f3->route('POST /lessons/@lid/edit', 'Controllers\LessonsController->editLesson');
 $f3->route('GET /lessons/@lid/delete', 'Controllers\LessonsController->deleteLesson');
-$f3->route('GET /lessons/@lid/details/delete', 'Controllers\StudentsController->deleteLesson');
 
 /* TODO: weil ich das gleiche .js File für delete Lesson und Student verwende, (wenn es ok ist), sollte ich das File umbenennen--nicht mehr student.js sondern delete.js */
 /* TODO: validare nel server se uno studente esiste già! */
 
 /* ROUTES for the section: calendar */
 
-$f3->route('GET @calendar: /calendar', 'Controllers\CalendarController->calendar');
+$f3->route('GET @calendar: /calendar', 'Controllers\CalendarController->calendarLessons');
 
 /* ROUTES for the section: earnings */
 
 $f3->route('GET @displayEarnings: /earnings', 'Controllers\EarningsController->display');
+/* probably i won't need this route, i will only make a select box with the possible filters */
 $f3->route('GET @filterEarnings: /earnings/filter', 'Controllers\EarningsController->filterOptions');
-$f3->route('POST @insertEarning: /earnings/insert', 'Controllers\EarningsController->insert');
+
+
+
+/* ROUTES for the section: new gig */
+
+$f3->route('GET @insertGig: /newGig/insert', 'Controllers\GigController->gigForm');
+$f3->route('POST @insertGig: /newGig/insert', 'Controllers\GigController->insertGig');
 

@@ -52,9 +52,6 @@
 
     <button type="submit" formaction="/students" class="pure-button">See All</button>
 
-    <button class="pure-button btn-delete"
-        data-url="/students/<?= ($studentDetails['id']) ?>/details/delete">Delete</button>
-
 
     <button class="pure-button"
         formaction="/lessons/seeAllStudents/<?= ($studentDetails['id']) ?>/lessonForm">Select for a lesson</button>

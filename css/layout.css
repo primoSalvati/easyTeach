@@ -176,6 +176,12 @@ th {
     height: 7em;
 }
 
+.settings-logo {
+    color: white;
+    margin-right: -4px;
+    margin-bottom: -6px;
+}
+
 a:link,
 a:visited,
 a:hover,
