@@ -39,14 +39,22 @@ $f3->route('GET @calendar: /calendar', 'Controllers\CalendarController->calendar
 /* ROUTES for the section: earnings */
 
 $f3->route('GET @displayEarnings: /earnings', 'Controllers\EarningsController->display');
-$f3->route('POST  /earnings', 'Controllers\EarningsController->filterOptions');
+$f3->route('POST /earnings', 'Controllers\EarningsController->filterOptions');
 
 /* $f3->route('GET  /earnings/filter', 'Controllers\EarningsController->filterOptions'); */
 
 
 
-/* ROUTES for the section: new gig */
+/* ROUTES for the section: gig */
 
-$f3->route('GET @insertGig: /newGig/insert', 'Controllers\GigController->gigForm');
-$f3->route('POST @insertGig: /newGig/insert', 'Controllers\GigController->insertGig');
+$f3->route('GET @gigs: /gigs', 'Controllers\GigsController->index');
+$f3->route('GET @insertGig: /gigs/insert', 'Controllers\GigsController->gigForm');
+$f3->route('POST @insertGig: /gigs/insert', 'Controllers\GigsController->insertGig');
+$f3->route('GET @gigDetails: /gigs/@gid/details', 'Controllers\GigsController->gigDetails');
+$f3->route('GET  @editGig:  /gigs/@gid/edit', 'Controllers\GigsController->getCompiledForm');
+$f3->route('POST  @editGig:  /gigs/@gid/edit', 'Controllers\GigsController->editGig');
+$f3->route('GET @deleteGig: /gigs/@gid/delete', 'Controllers\GigsController->deleteGig');
+
+
+
 

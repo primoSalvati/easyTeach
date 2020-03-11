@@ -132,7 +132,6 @@
                         <?= ($length['length']) ?></option>
                 <?php endforeach; ?>
             </select>
-            <!-- <a href="/insertLessonLength">Other (insert a lesson length)</a> -->
         </td>
         <tr>
             <td><strong>Regularity</strong></td>

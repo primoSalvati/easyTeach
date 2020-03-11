@@ -17,7 +17,7 @@
 
         <?php $ctr=0; foreach (($students?:[]) as $row): $ctr++; ?>
             <tr>
-                <td><?= ($ctr) ?></td>
+                <td class="list-align"><?= ($ctr) ?></td>
                 <td><?= ($row['name']) ?></td>
                 <td><?= ($row['surname']) ?></td>
                 <td><a href="/students/<?= ($row['id']) ?>/details">Details</a></td>

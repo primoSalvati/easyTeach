@@ -1,5 +1,5 @@
 
-<table class="pure-table pure-table-bordered" id="detailsTable">
+<table class="pure-table pure-table-striped" id="detailsTable">
     <tbody>
         <tr>
             <td><strong>Student</strong></td>

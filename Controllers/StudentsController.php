@@ -1,7 +1,10 @@
 <?php
 
 namespace Controllers;
-
+use function Models\debug_to_console;
+use function Models\dump_and_die;
+use function Models\dumpthisvalue;
+use function Models\valOrNull;
 use \Template;
 
 /* TODO: insert the possibility to have active students, and a student archive, possibly with buttons to reactivate or delete them */
@@ -25,6 +28,8 @@ class StudentsController
         $sm = new \Models\StudentsModel();
         $students = $sm->students();
         $f3->set('students', $students);
+
+    
 
         $f3->set('jScripts', ['/js/student.js']);
 
@@ -283,8 +288,6 @@ function deleted since the page was deleted  public function index($f3, $params)
        
 
         $f3->set('studentDetails', $studentDetails);
-
-        $f3->set('jScripts', ['/js/studentDetails.js']);
 
         $f3->set('pageTitle', 'Student Details');
         $f3->set('mainHeading', 'Student Details');

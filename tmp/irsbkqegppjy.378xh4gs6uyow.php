@@ -52,7 +52,7 @@
                 <li><a href="<?= (Base::instance()->alias('displayEarnings')) ?>">
                         <h3>Earnings</h3>
                     </a></li>
-                <li><a href="<?= (Base::instance()->alias('insertGig')) ?>">
+                <li><a href="<?= (Base::instance()->alias('gigs')) ?>">
                         <h3>Gig</h3>
                     </a></li>
                 <li><a href="<?= (Base::instance()->alias('displayEarnings')) ?>">

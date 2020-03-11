@@ -114,6 +114,8 @@ form.pure-form .pure-form-stacked {
     padding: 0.5em 1em;
     border-radius: 6px;
     margin: 1em 0;
+    display: inline-block;
+    
 }
 
 .alert-error {
@@ -123,6 +125,8 @@ form.pure-form .pure-form-stacked {
     padding: 0.5em 1em;
     border-radius: 6px;
     margin: 1em 0;
+    display: inline-block;
+    
 }
 
 .site-footer {
@@ -209,4 +213,6 @@ main .display-options {
 } */
 
 
-
+.list-align {
+    text-align: right;
+}

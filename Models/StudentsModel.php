@@ -23,7 +23,7 @@ class StudentsModel extends Model
      * @return void
      */
     public function studentDetails(int $id)
-    {   /* problem: if i customize the date like below, the browser, on edit, diesn't receive the rigth value */
+    {  
         $studentDetails = $this->db->exec(
             'SELECT students.*, 
             /* date format customized */
