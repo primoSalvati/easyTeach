@@ -39,8 +39,9 @@ $f3->route('GET @calendar: /calendar', 'Controllers\CalendarController->calendar
 /* ROUTES for the section: earnings */
 
 $f3->route('GET @displayEarnings: /earnings', 'Controllers\EarningsController->display');
-/* probably i won't need this route, i will only make a select box with the possible filters */
-$f3->route('GET @filterEarnings: /earnings/filter', 'Controllers\EarningsController->filterOptions');
+$f3->route('POST  /earnings', 'Controllers\EarningsController->filterOptions');
+
+/* $f3->route('GET  /earnings/filter', 'Controllers\EarningsController->filterOptions'); */
 
 
 

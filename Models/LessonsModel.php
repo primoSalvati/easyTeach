@@ -92,8 +92,10 @@ class LessonsModel extends Model
 /* ACHTUNG, i can't edit the instrument until i make the lookup table instruments_students, see what about lesson length (it will have to do with calendar, later) */
     public function editLesson($students_id, $date, $time, $earning, $address, $notes, int $id): bool
     {
-/* un problema potrebbe essere la Reihenfolge! */
+
         $lessonUpdated = $this->db->exec('UPDATE `events` SET `students_id` = ?, `date` = ?, `time` = ?, `earning` = ?, `address` = ?, `notes` = ? WHERE `events`.`id` = ?', [$students_id, $date, $time, $earning, $address, $notes, $id]);
+
+        
 
         return $lessonUpdated;
     }

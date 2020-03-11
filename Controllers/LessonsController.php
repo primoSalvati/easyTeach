@@ -62,6 +62,7 @@ class LessonsController
             $f3->set('currentDate', date('Y-m-d'));
             $f3->set('currentTime', date('H:i'));
             $f3->set('values', $values);
+
             $f3->set('pageTitle', 'Insert lesson');
             $f3->set('mainHeading', 'Insert lesson');
             $f3->set('content', '/Views/content/lessons/lessonForm.html');
@@ -130,7 +131,6 @@ class LessonsController
                     $f3->set('alertError', 'Error! The lesson couldn\'t be inserted.');
                 }
 
-
                 $f3->set('pageTitle', 'Lessons');
                 $f3->set('mainHeading', 'Lessons');
                 $f3->set('content', 'Views/content/lessons/lessonInserted.html');
@@ -163,6 +163,8 @@ class LessonsController
 
         $f3->set('lessonDetails', $lessonDetails);
 
+        dumpThisValue($lessonDetails);
+
         $f3->set('jScripts', ['/js/lessonDetails.js']);
 
         $f3->set('pageTitle', 'Lesson Details');
@@ -183,7 +185,6 @@ class LessonsController
             $values = $sm->lessonDetails($lid);
 
             $this->selectBox($f3);
-
 
             $f3->set('values', $values);
             $f3->set('pageTitle', 'Edit Lesson');
@@ -244,8 +245,8 @@ class LessonsController
             ));
 
             $validData = $gump->run($_POST);
-            
 
+            
             if ($validData === false) {
                 $errors = $gump->get_errors_array();
                 $f3->set('errors', $errors);

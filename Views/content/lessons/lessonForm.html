@@ -3,19 +3,15 @@
 <form action="" method="post" class="pure-form pure-form-stacked">
     <input type="hidden" name="event_types_id" value="1">
     <!-- the ternary operators below (if/else statements) are meant to receive the data in the form in case of unsuccessfull validation -->
+    <!-- i named this field also students_id, please check if it makes collisions with the field below -->
     <input type="hidden" name="students_id" value="{{ (empty(@values.id)) ? (@values.students_id) : (@values.id) }}">
     <table class="pure-table pure-table-bordered" id="detailsTable">
         <tbody>
             <tr>
-                <!-- ACHTUNG! controlla cosa hai scritto qui, name mi sembra una cazzata, non ricordo ora il motivo per cui mi serve un hidden input....e perché si chiama name visto che c'è anche il surname -->
-                <!-- i think i can remove these lines and leave the select box below for the student, and do the same for instrument and lesson length (to be copied exactly from the student form by the way), maybe the hidden field is substituted by the OR in the ternary operator below -->
-<!--                 <input type="hidden" name="name" value="{{ @values.name }} {{ @values.surname }}">
-                
-                {{ @values.name }} {{ @values.surname }} -->
                  <td><strong>Student</strong></td>
 <!-- again, the || in the ternary operator below is there because, in case of lesson edit, the id has the key name "students_id", in case of new lesson, the id key has the name "id" -->
                  <td>      
-                    <select name="student">
+                    <select name="students_id">
                         <repeat group="{{ @student_list }}" value="{{ @student }}">
                             <option value="{{ @student.id }}"
                                           {{ (@student.id == @values.students_id || @student.id == @values.id) ? ('selected') : ('') }}>
@@ -26,14 +22,17 @@
                  </td>
             </tr>
             <tr>
-                <!-- <input type="hidden" name="instrument" value="{{ @values.instrument}}"> -->
-                <p>/* ACHTUNG, i can't edit the instrument until i make the lookup table instruments_students, see what about lesson length (it will have to do with calendar, later) */</p>
+                <input type="hidden" name="instrument" value="{{ @values.instrument}}">
                 <td><strong>Instrument</strong></td>
-                <td>                
-                    <select name="instrument">
+
+                <td><input type="text" 
+                        value="{{ @values.instrument }}" readonly></td>
+                <!--All this if i want to change the instrument, for now i don't need it and i will automatically have the assigned instrument
+                     <td>                
+                    <select name="instrument"> -->
         <!-- since, after the validation, the value instruments_id was appearing with another key name (instrument) i made the OR statement, i could also have changed the name attribute of the select tag above, but the i would need to check in the SQL statements...-->
         <!-- ACHTUNG: if the instrument is empty, it will not be selected, but if i put the empty value as the first option, and there's no other selected values, this empty will be the shown one...it is a trick, and it is working also on studentForm, as well as here below in lesson length -->
-                <option value="">---</option>
+<!--                 <option value="">---</option>
                       <repeat group="{{ @instruments }}" value="{{ @instrument }}">
                          <option value="{{ @instrument.id }}"
                            {{ (@instrument.id == @values.instruments_id || @instrument.id == @values.instrument) ? ('selected') : ('') }}>
@@ -42,7 +41,7 @@
                       </repeat>
                       
                    </select>
-                </td>
+                </td> -->
             </tr>
 
 
@@ -76,15 +75,14 @@
                 <!-- <td>{{ (empty(@values.length)) ? (@values.lesson_length) : (@values.length) }}</td> -->
                 <td>
 
-                        <select name="lesson_length" id="lesson_length">
-                    <!-- ACHTUNG: SE LO LESSON LENGTH è VUOTO, NON ME LO METTE COME SELECTED, RIVEDERE -->
-                      <option value="">---</option>
+                      <select name="lesson_length" id="lesson_length">
+                        <option value="">---</option>
                                <repeat group="{{ @lesson_length }}" value="{{ @length }}">
                                    <option value="{{ @length.id }}" {{ (@length.id == @values.lesson_length_id || @length.id == @values.lesson_length) ? ('selected') : ('') }}>
                                    {{ @length.length }}
                                    </option>
                                </repeat>
-                        </select> 
+                      </select> 
                 </td>
             </tr>
             <tr>
