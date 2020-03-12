@@ -4,7 +4,7 @@
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>Nr.</th>
+            <th>Nr</th>
             <th>Name</th>
             <th>Surname</th>
             <th>Details</th>

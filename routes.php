@@ -19,6 +19,8 @@ $f3->route('POST /students/@sid/edit', 'Controllers\StudentsController->editStud
 
 /* TODO: ripensare la logica delle pagine iniziali nel modo seguente: invece di avere ad es. students, poi 'add new' e 'see all', questi due bottoni li mantieni sempre nell'header della sezione students, e sotto succede quello che deve succedere. Stessa cosa per le altre sezioni! */
 
+/* TODO: mettere a tutte le routes un nome, anche se poi non lo usi */
+
 /* $f3->route('GET  /lessons', 'Controllers\LessonsController->index'); */
 $f3->route('GET @lessons: /lessons', 'Controllers\LessonsController->index');
 $f3->route('GET @selectStudentForALesson: /lessons/seeAllStudents', 'Controllers\LessonsController->selectStudent');
@@ -52,8 +54,15 @@ $f3->route('GET @insertGig: /gigs/insert', 'Controllers\GigsController->gigForm'
 $f3->route('POST @insertGig: /gigs/insert', 'Controllers\GigsController->insertGig');
 $f3->route('GET @gigDetails: /gigs/@gid/details', 'Controllers\GigsController->gigDetails');
 $f3->route('GET  @editGig:  /gigs/@gid/edit', 'Controllers\GigsController->getCompiledForm');
-$f3->route('POST  @editGig:  /gigs/@gid/edit', 'Controllers\GigsController->editGig');
+$f3->route('POST @editGig:  /gigs/@gid/edit', 'Controllers\GigsController->editGig');
 $f3->route('GET @deleteGig: /gigs/@gid/delete', 'Controllers\GigsController->deleteGig');
+
+
+/* ROUTES for the section: settings */
+
+$f3->route('GET @settings: /settings', 'Controllers\SettingsController->index');
+
+
 
 
 

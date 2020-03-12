@@ -1,5 +1,3 @@
-<?php echo $this->render('/Views/modules/alert.html',NULL,get_defined_vars(),0); ?>
-
 <form action="" method="post" class="pure-form pure-form-stacked">
     <input type="hidden" name="event_types_id" value="1">
     <!-- the ternary operators below (if/else statements) are meant to receive the data in the form in case of unsuccessfull validation -->

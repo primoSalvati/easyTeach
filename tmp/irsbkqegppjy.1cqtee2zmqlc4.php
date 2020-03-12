@@ -46,9 +46,6 @@
 
     <button class="pure-button" formaction="/lessons/seeAllStudents/<?= ($lessonDetails['students_id']) ?>/lessonForm">Select
         for new lesson</button>
-
-    
-
 </form>
 
 

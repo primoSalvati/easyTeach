@@ -5,8 +5,4 @@
     <button type="submit" formaction="<?= (Base::instance()->alias('selectStudentForALesson')) ?>" class="pure-button">Add new</button>
 
     <button type="submit" formaction="<?= (Base::instance()->alias('lessons')) ?>" class="pure-button">See all</button>
-
-<!--    i don't need this here
-    
-    <button type="submit" formaction="<?= (Base::instance()->alias('lessons')) ?>" class="pure-button">Go to lesson</button> -->
 </form>

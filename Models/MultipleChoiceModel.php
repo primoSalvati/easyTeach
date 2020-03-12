@@ -45,7 +45,7 @@ class MultipleChoiceModel extends Model
     public function eventTypes()
     {
 
-        $eventTypes = $this->db->exec('SELECT `id`, `type` FROM `event_types` ORDER BY `type`');
+        $eventTypes = $this->db->exec('SELECT `id`, `type` FROM `event_types`');
 
         return $eventTypes;
     }

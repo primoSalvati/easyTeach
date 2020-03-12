@@ -10,7 +10,7 @@
         integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="/css/layout.css" />
 
-<!--     <?php foreach (($csspaths?:[]) as $path): ?>
+    <!--     <?php foreach (($csspaths?:[]) as $path): ?>
 
         <link rel="stylesheet" href="<?= ($path) ?>">
     <?php endforeach; ?> -->
@@ -38,26 +38,38 @@
 
         </header>
         <nav>
-            
+
             <ul>
-                <li><a href="<?= (Base::instance()->alias('students')) ?>">
+                <li>
+                    <a href="<?= (Base::instance()->alias('students')) ?>">
                         <h3>Students</h3>
-                    </a></li>
-                <li><a href="<?= (Base::instance()->alias('lessons')) ?>">
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= (Base::instance()->alias('lessons')) ?>">
                         <h3>Lessons</h3>
-                    </a></li>
-                <li><a href="<?= (Base::instance()->alias('calendar')) ?>">
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= (Base::instance()->alias('calendar')) ?>">
                         <h3>Calendar</h3>
-                    </a></li>
-                <li><a href="<?= (Base::instance()->alias('displayEarnings')) ?>">
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= (Base::instance()->alias('displayEarnings')) ?>">
                         <h3>Earnings</h3>
-                    </a></li>
-                <li><a href="<?= (Base::instance()->alias('gigs')) ?>">
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= (Base::instance()->alias('gigs')) ?>">
                         <h3>Gig</h3>
-                    </a></li>
-                <li><a href="<?= (Base::instance()->alias('displayEarnings')) ?>">
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= (Base::instance()->alias('settings')) ?>">
                         <img src="/media/settings.png" alt="settings_image" class="settings-logo">
-                    </a></li>
+                    </a>
+                </li>
             </ul>
 
             </h3>
@@ -77,12 +89,12 @@
         <footer class="site-footer">
 
 
-<!--             <form class="pure-form pure form-stacked">
+            <!--             <form class="pure-form pure form-stacked">
                 <button class="pure-button" onclick="history.go(-1);">Back </button>
             </form> -->
 
-          <span> &copy; easyTeach <?= (date('Y')) ?></span>
-           
+            <span> &copy; easyTeach <?= (date('Y')) ?></span>
+
         </footer>
     </div>
 

@@ -163,8 +163,6 @@ class LessonsController
 
         $f3->set('lessonDetails', $lessonDetails);
 
-        dumpThisValue($lessonDetails);
-
         $f3->set('jScripts', ['/js/lessonDetails.js']);
 
         $f3->set('pageTitle', 'Lesson Details');

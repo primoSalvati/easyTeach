@@ -216,3 +216,6 @@ main .display-options {
 .list-align {
     text-align: right;
 }
+ .pure-form-stacked {
+     display: inline-block;
+ }
