@@ -2,6 +2,7 @@
     <p><button type="submit" formaction="<?= (Base::instance()->alias('selectStudentForALesson')) ?>" class="pure-button">Add new
             lesson</button>
     </p>
+    <h2>Previous Lessons</h2>
 </form>
 <table class="pure-table pure-table-bordered">
     <thead>

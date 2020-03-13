@@ -1,6 +1,7 @@
 <form class="pure-form pure-form-stacked">
     <p><button type="submit" formaction="<?= (Base::instance()->alias('addNewStudent')) ?>" class="pure-button">Add new</button></p>
 </form>
+<h2>Your Students</h2>
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>

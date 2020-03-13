@@ -22,7 +22,7 @@ class StudentsModel extends Model
      * 
      * @return void
      */
-    public function studentDetails(int $id)
+    public function studentDetails(int $id) 
     {  
         $studentDetails = $this->db->exec(
             'SELECT students.*, 

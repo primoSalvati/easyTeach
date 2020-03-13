@@ -61,6 +61,7 @@ $f3->route('GET @deleteGig: /gigs/@gid/delete', 'Controllers\GigsController->del
 /* ROUTES for the section: settings */
 
 $f3->route('GET @settings: /settings', 'Controllers\SettingsController->index');
+$f3->route('POST @settings: /settings', 'Controllers\SettingsController->index');
 
 
 

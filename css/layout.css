@@ -214,8 +214,9 @@ main .display-options {
 
 
 .list-align {
-    text-align: right;
+    text-align: center;
 }
+
  .pure-form-stacked {
      display: inline-block;
  }
