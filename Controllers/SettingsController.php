@@ -14,13 +14,11 @@ class SettingsController
 {
 
 
-    /* chiamare la funzione __construct? vedere se funziona anche mettendola sopre */
+    /* chiamare la funzione __construct? */
     public function index($f3)
     {
 
-        /* $sm = new \Models\StudentsModel();
-        $students = $sm->students();
-        $f3->set('students', $students);*/
+
         $im = new \Models\MultipleChoiceModel();
         $instruments = $im->allInstruments();
         $f3->set('instruments', $instruments);

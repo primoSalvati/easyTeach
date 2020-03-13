@@ -25,7 +25,8 @@ class EarningsController
          
         /* $sum = 100; */
 
-        var_dump($totalEarnings[0]['total']);
+        $this->selectBox($f3);
+
         /* $f3->set('values', $sum); */
         $f3->set('sum', $totalEarnings[0]['total']);
         $f3->set('pageTitle', 'Earnings');
@@ -43,8 +44,12 @@ class EarningsController
         $data = new \Models\EarningsModel();
 
         $totalEarnings = $data->earningsFiltered($studentSourcesId);
-        var_dump($totalEarnings);
+
+        $this->selectBox($f3);
+
         $f3->set('sum', $totalEarnings[0]['total']);
+        $f3->set('selected_source', $studentSourcesId);
+
         $f3->set('pageTitle', 'Earnings');
         $f3->set('mainHeading', 'Earnings');
         $f3->set('content', 'Views/content/earnings/displayEarnings.html');
@@ -52,6 +57,16 @@ class EarningsController
         echo Template::instance()->render('/Views/index.html');
 
 
+
+    }
+
+
+    protected function selectBox($f3)
+    {
+        $selectBox = new \Models\MultipleChoiceModel();
+
+        $studentSources = $selectBox->studentSources();
+        $f3->set('student_sources', $studentSources);
 
     }
 

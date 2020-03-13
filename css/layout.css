@@ -166,15 +166,6 @@ th {
 
 
 
-.input-row {
-    display: flex;
-    align-items: center;
-}
-
-.input-row label {
-    margin-left: 4px;
-}
-
 .logo {
     width: 7em;
     height: 7em;
@@ -219,4 +210,6 @@ main .display-options {
 
  .pure-form-stacked {
      display: inline-block;
+     text-align: left;
  }
+ 

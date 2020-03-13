@@ -1,155 +1,141 @@
 <include href="/Views/modules/alert.html" />
 <!--TODO: The mobile version should have only placeholders and no labels -->
-<form action="" method="post" class="pure-form pure-form-stacked">
+<form action="" method="post" class="pure-form pure-form-stacked formatted-form">
 
-    <table class="pure-table pure-table-bordered">
-        <tr>
-            <td><strong>Name</strong></td>
-            <td>
-                <check if="{{ @errors.name }}">
-                    <div class="field-error">{{ @errors.name }}</div>
-                </check>
-                <input type="text" name="name" id="name" value="{{ @values.name }}">
-            </td>
-        </tr>
+    <label for="name">Name</label>
 
-        <tr>
-            <td><strong>Surame</strong></td>
-            <td>
-                <check if="{{ @errors.surname }}">
-                    <div class="field-error">{{ @errors.surname }}</div>
-                </check>
-                <input type="text" name="surname" id="surname" value="{{ @values.surname }}">
-            </td>
-        </tr>
+    <check if="{{ @errors.name }}">
+        <div class="field-error">{{ @errors.name }}</div>
+    </check>
+    <input type="text" name="name" id="name" value="{{ @values.name }}">
 
 
 
-        <tr>
-            <td><strong>Email</strong></td>
-            <td>
-                <check if="{{ @errors.email }}">
-                    <div class="field-error">{{ @errors.email }}</div>
-                </check>
-                <input type="email" name="email" id="email" value="{{ @values.email }}">
-            </td>
-        </tr>
+
+    <label for="surname">Surname</label>
+
+    <check if="{{ @errors.surname }}">
+        <div class="field-error">{{ @errors.surname }}</div>
+    </check>
+    <input type="text" name="surname" id="surname" value="{{ @values.surname }}">
 
 
 
-        <tr>
-            <td><strong>Phone</strong></td>
-            <td>
-                <check if="{{ @errors.phone }}">
-                    <div class="field-error">{{ @errors.phone }}</div>
-                </check>
-                <input type="tel" name="phone" id="phone" value="{{ @values.phone }}">
-            </td>
-        </tr>
-
-
-        <tr>
-            <td><strong>Date of Birth</strong></td>
-            <td>
-                <check if="{{ @errors.date_of_birth }}">
-                    <div class="field-error">{{ @errors.date_of_birth }}</div>
-                </check>
-                <input type="date" name="date_of_birth" id="date_of_birth" value="{{ @values.date_of_birth }}">
-            </td>
-        </tr>
-
-
-        <tr>
-            <td><strong>Price</strong></td>
-            <td>
-                <check if="{{ @errors.student_price }}">
-                    <div class="field-error">{{ @errors.student_price }}</div>
-                </check>
-                <input type="number" min="1" step="any" name="student_price" id="student_price"
-                    value="{{ @values.student_price }}">
-            </td>
-        </tr>
 
 
 
-        <tr>
-            <td><strong>Source</strong></td>
-            <td>
-                <select name="student_source" id="student_source">
-                    <!-- with this option, i send an empty value, which will be transformed in NULL by the funtion valOrNUll() in Model (the same for alle select boxes below and in student form) -->
-                    <option value="">---</option>
-                    <!-- below is a ternary operator, as an alternative to if/else statement, in order to receive the selected values in the selected boxes(used in all select boxes below). (Condition) ? (Statement1) : (Statement2); anyway below, only for student_sources, Thomas showed me the fat-free alternative-->
-                    <repeat group="{{ @student_sources }}" value="{{ @student_source }}">
-                        <check
-                            if="{{@student_source.id == @values.student_sources_id || @student_source.id == @values.student_source}}">
-                            <true>
-                                <option value="{{ @student_source.id }}" selected>
-                                    {{ @student_source.source }}
-                                </option>
-                            </true>
-                            <false>
-                                <option value="{{ @student_source.id }}">
-                                    {{ @student_source.source }}
-                                </option>
-                            </false>
-                        </check>
-                    </repeat>
-                </select>
-            </td>
-        </tr>
+    <label for="email">Email</label>
 
-
-        <tr>
-            <td><strong>Instrument</strong></td>
-
-            <td>
-                <select name="instrument" id="instrument">
-                    <option value="">---</option>
-                    <!-- since, after the validation, the value instruments_id was appearing with another key name (instrument) i made the OR statement, i could also have changed the name attribute of the select tag above, but the i would need to check in the SQL statements...-->
-
-                    <repeat group="{{ @instruments }}" value="{{ @instrument }}">
-                        <option value="{{ @instrument.id }}"
-                            {{ (@instrument.id == @values.instruments_id || @instrument.id == @values.instrument) ? ('selected') : ('') }}>
-                            {{ @instrument.type }}
-                        </option>
-
-                    </repeat>
-                </select>
-            </td>
-        </tr>
-
-        <td><strong>Lesson Length</strong></td>
-
-        <td>
-            <select name="lesson_length" id="lesson_length">
-
-                <option value="">---</option>
-                <repeat group="{{ @lesson_length }}" value="{{ @length }}">
-                    <option value="{{ @length.id }}"
-                        {{ (@length.id == @values.lesson_length_id || @length.id == @values.lesson_length) ? ('selected') : ('') }}>
-                        {{ @length.length }}</option>
-                </repeat>
-            </select>
-        </td>
-        <tr>
-            <td><strong>Regularity</strong></td>
-
-            <td>
-                <select name="student_regularity" id="student_regularity">
-                    <option value="">---</option>
-                    <repeat group="{{ @student_regularity }}" value="{{ @regularity }}">
-                        <option value="{{ @regularity.id }}"
-                            {{ (@regularity.id == @values.student_regularity_id || @regularity.id == @values.student_regularity) ? ('selected') : ('') }}>
-                            {{ @regularity.type }}
-                        </option>
-                    </repeat>
-                </select>
-            </td>
-        </tr>
+    <check if="{{ @errors.email }}">
+        <div class="field-error">{{ @errors.email }}</div>
+    </check>
+    <input type="email" name="email" id="email" value="{{ @values.email }}">
 
 
 
-    </table>
+
+
+
+    <label for="phone">Phone</label>
+
+    <check if="{{ @errors.phone }}">
+        <div class="field-error">{{ @errors.phone }}</div>
+    </check>
+    <input type="tel" name="phone" id="phone" value="{{ @values.phone }}">
+
+
+
+
+    <label for="date_of_birth">Date of Birth</label>
+
+    <check if="{{ @errors.date_of_birth }}">
+        <div class="field-error">{{ @errors.date_of_birth }}</div>
+    </check>
+    <input type="date" name="date_of_birth" id="date_of_birth" value="{{ @values.date_of_birth }}">
+
+
+
+
+
+    <label for="student_price">Price</label>
+
+    <check if="{{ @errors.student_price }}">
+        <div class="field-error">{{ @errors.student_price }}</div>
+    </check>
+    <input type="number" min="1" step="any" name="student_price" id="student_price" value="{{ @values.student_price }}">
+
+
+
+
+
+
+    <label for="student_source">Student Source</label>
+
+    <select name="student_source" id="student_source">
+        <!-- with this option, i send an empty value, which will be transformed in NULL by the funtion valOrNUll() in Model (the same for alle select boxes below and in student form) -->
+        <option value="">---</option>
+        <!-- below is a ternary operator, as an alternative to if/else statement, in order to receive the selected values in the selected boxes(used in all select boxes below). (Condition) ? (Statement1) : (Statement2); anyway below, only for student_sources, Thomas showed me the fat-free alternative-->
+        <repeat group="{{ @student_sources }}" value="{{ @student_source }}">
+                    <option value="{{ @student_source.id }}" selected>
+                        {{ @student_source.source }}
+                    </option>
+        </repeat>
+    </select>
+
+
+
+
+
+    <label for="instrument">Instrument</label>
+
+
+    <select name="instrument" id="instrument">
+        <option value="">---</option>
+        <!-- since, after the validation, the value instruments_id was appearing with another key name (instrument) i made the OR statement, i could also have changed the name attribute of the select tag above, but the i would need to check in the SQL statements...-->
+
+        <repeat group="{{ @instruments }}" value="{{ @instrument }}">
+            <option value="{{ @instrument.id }}"
+                {{ (@instrument.id == @values.instruments_id || @instrument.id == @values.instrument) ? ('selected') : ('') }}>
+                {{ @instrument.type }}
+            </option>
+        </repeat>
+    </select>
+
+
+
+
+    <label for="lesson_length">Lesson Length</label>
+
+    <select name="lesson_length" id="lesson_length">
+
+        <option value="">---</option>
+        <repeat group="{{ @lesson_length }}" value="{{ @length }}">
+            <option value="{{ @length.id }}"
+                {{ (@length.id == @values.lesson_length_id || @length.id == @values.lesson_length) ? ('selected') : ('') }}>
+                {{ @length.length }}</option>
+        </repeat>
+    </select>
+
+
+    
+    <label for="student_regularity">Regularity</label>
+
+
+    <select name="student_regularity" id="student_regularity">
+        <option value="">---</option>
+        <repeat group="{{ @student_regularity }}" value="{{ @regularity }}">
+            <option value="{{ @regularity.id }}"
+                {{ (@regularity.id == @values.student_regularity_id || @regularity.id == @values.student_regularity) ? ('selected') : ('') }}>
+                {{ @regularity.type }}
+            </option>
+        </repeat>
+    </select>
+
+
+
+
+
+
 
     <p><input type="submit" value="Save" class="pure-button"></p>
 
