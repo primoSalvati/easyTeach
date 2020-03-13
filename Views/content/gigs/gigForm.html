@@ -7,7 +7,7 @@
                 <td>
                     <select name="event_types_id">
 <!-- the ternary operator below is meant to mantain, after a failed validation, the selected option as selected, since, on the array $_POST, the value is called differently (event_types_id)
-    TODO: check if this solution makes sense:  i want to have a selected field Concert, because it will be the most selected in this section, does it make sense or there is abetter solution?
+    TODO: check if this solution makes sense:  i want to have a selected field Concert, because it will be the most selected in this section, does it make sense or there is a better solution?
 {{ (@event.type == 'Concert') ? ('selected') : ('') }}-->
                         <repeat group="{{ @event_types }}" value="{{ @event }}">
                             <option value="{{ @event.id }}" {{ (@event.id == @values.event_types_id) ? ('selected') : ('') }} {{ (@event.type == 'Concert') ? ('selected') : ('') }}>

@@ -13,7 +13,32 @@ use function Models\valOrNull;
 class SettingsController
 {
 
-    public function insert($f3)
+
+    /* chiamare la funzione __construct? vedere se funziona anche mettendola sopre */
+    public function index($f3)
+    {
+
+        /* $sm = new \Models\StudentsModel();
+        $students = $sm->students();
+        $f3->set('students', $students);*/
+        $im = new \Models\MultipleChoiceModel();
+        $instruments = $im->allInstruments();
+        $f3->set('instruments', $instruments);
+
+        $this->insertInstrument($f3);
+
+
+
+        $f3->set('jScripts', ['/js/student.js']);
+
+        $f3->set('pageTitle', 'Settings');
+        $f3->set('mainHeading', 'Settings');
+        $f3->set('content', 'Views/content/settings/settings.html');
+
+        echo Template::instance()->render('/Views/index.html');
+    }
+
+    public function insertInstrument($f3)
     {
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
@@ -44,7 +69,7 @@ class SettingsController
                 /* achtung! assegnare con un or l'alternativa values ai valori ? */
                 $f3->set('values', $_POST);
 
-                dumpthisvalue($_POST);
+               /*  dumpthisvalue($_POST); */
 
                 $this->selectBox($f3);
 
@@ -76,29 +101,7 @@ class SettingsController
     }
 
 
-/* chiamare la funzione __construct? vedere se funziona anche mettendola sopre */
-    public function index($f3)
-    {
 
-        /* $sm = new \Models\StudentsModel();
-        $students = $sm->students();
-        $f3->set('students', $students);*/
-        $im = new \Models\MultipleChoiceModel();
-        $instruments = $im->allInstruments();
-        $f3->set('instruments', $instruments);
-
-        $this->insert($f3);
-
-
-
-        $f3->set('jScripts', ['/js/student.js']);
-
-        $f3->set('pageTitle', 'Settings');
-        $f3->set('mainHeading', 'Settings');
-        $f3->set('content', 'Views/content/settings/settings.html');
-
-        echo Template::instance()->render('/Views/index.html');
-    }
 
     protected function selectBox($f3)
     {

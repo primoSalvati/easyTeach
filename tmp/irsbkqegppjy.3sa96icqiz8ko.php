@@ -3,7 +3,7 @@
 
 <h2>Customize easyTeach</h2>
 
-<form method="post" class="pure-form pure-form-stacked">
+<form action="/settings" method="post" class="pure-form pure-form-stacked">
 
     <table class="pure-table pure-table-bordered list-align">
         <thead>

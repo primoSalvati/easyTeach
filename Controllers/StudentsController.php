@@ -29,7 +29,6 @@ class StudentsController
         $students = $sm->students();
         $f3->set('students', $students);
 
-    
 
         $f3->set('jScripts', ['/js/student.js']);
 
