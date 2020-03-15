@@ -1,23 +1,21 @@
 <?php
-//i made named routes, not yet sure how to use them properly ( not only on links, but also in (fat-free) code) @homepage:
-//doubt with the named routes: in case of two same urls, like addstudent GET and POST, how to deal with named routes? do i need two different? 
+
 $f3->route('GET @homepage: /', 'Controllers\Homepage->index');
-/* $f3->route('GET /login', 'Controllers\LoginController->login'); */ 
 /* ROUTES for the section: students */
-/* 
-achtung, route deleted, i keep it here in case of bugs, check also the functions to be deleted!
-$f3->route('GET  /students', 'Controllers\StudentsController->index'); */
+$f3->route('GET /login', 'Controllers\UserController->index'); 
+$f3->route('POST /authenticate', 'Controllers\UserController->authenticate'); 
+/* ROUTES for the section: students */
+
 $f3->route('GET @students: /students', 'Controllers\StudentsController->index');
 $f3->route('GET @studentDetails: /students/@sid/details', 'Controllers\StudentsController->studentDetails');
 $f3->route('GET @addNewStudent: /students/addStudent', 'Controllers\StudentsController->getForm');
 $f3->route('POST /students/addStudent', 'Controllers\StudentsController->postForm');
 $f3->route('GET /students/@sid/delete', 'Controllers\StudentsController->deleteStudent');
-/* ACHTUNG! do i need a second route to delete a student from the page details? maybe only because of the JavaScript commands... */
+
 $f3->route('GET /students/@sid/edit', 'Controllers\StudentsController->getCompiledForm');
 $f3->route('POST /students/@sid/edit', 'Controllers\StudentsController->editStudent');
 /* ROUTES for the section: lessons */
 
-/* TODO: ripensare la logica delle pagine iniziali nel modo seguente: invece di avere ad es. students, poi 'add new' e 'see all', questi due bottoni li mantieni sempre nell'header della sezione students, e sotto succede quello che deve succedere. Stessa cosa per le altre sezioni! */
 
 /* TODO: mettere a tutte le routes un nome, anche se poi non lo usi */
 
@@ -61,7 +59,8 @@ $f3->route('GET @deleteGig: /gigs/@gid/delete', 'Controllers\GigsController->del
 /* ROUTES for the section: settings */
 
 $f3->route('GET @settings: /settings', 'Controllers\SettingsController->index');
-$f3->route('POST @settings: /settings', 'Controllers\SettingsController->index');
+$f3->route('POST @settings: /settings', 'Controllers\SettingsController->insertValue');
+$f3->route('GET /settings/@vid/delete', 'Controllers\SettingsController->deleteValue');
 
 
 

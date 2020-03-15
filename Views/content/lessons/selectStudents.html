@@ -20,10 +20,12 @@
                 <!-- the link here should send data from the selected student in the lesson table, or i can do it with js, or directly with an sql command...?-->
                 <td>
                     <form>
+                        <input type="hidden" name="date"
+                            value="" id="date">
                         <button type="submit" class="pure-button"
                             formaction="/lessons/seeAllStudents/{{ @row.id }}/lessonForm">
                             Select
-                        </form>
+                        </button>
                     </form>
                 </td>
             </tr>
@@ -38,3 +40,9 @@
 <form class="pure-form pure-form-stacked">
     <p><button type="submit" formaction="{{ 'addNewStudent' | alias }}" class="pure-button">Add new student</button></p>
 </form>
+
+<script>
+
+    document.getElementsByName('date').forEach((e)=>e.value = new
+    URLSearchParams(window.location.search).get('date'));
+</script>

@@ -13,7 +13,6 @@
 
 .pure-button {
     background-color: #0074D9;
-
     color: white;
 }
 
@@ -211,5 +210,15 @@ main .display-options {
  .pure-form-stacked {
      display: inline-block;
      text-align: left;
+ }
+
+ .wide-button {
+     width: 100%;
+ }
+
+ .login-link {
+ position: absolute;
+ top:0px;
+ left:0px;
  }
  

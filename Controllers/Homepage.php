@@ -5,7 +5,7 @@ namespace Controllers;
 use \Template;
 
 
-class Homepage
+class Homepage 
 {
 
   public function index($f3, $params)

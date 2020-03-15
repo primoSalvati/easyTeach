@@ -10,7 +10,7 @@ use function Models\dump_and_die;
 use function Models\dumpthisvalue;
 use function Models\valOrNull;
 
-class SettingsController
+class SettingsController 
 {
 
 
@@ -18,16 +18,16 @@ class SettingsController
     public function index($f3)
     {
 
-
         $im = new \Models\MultipleChoiceModel();
         $instruments = $im->allInstruments();
         $f3->set('instruments', $instruments);
 
-        $this->insertInstrument($f3);
+        $this->insertValue($f3);
+        /* $this->deleteValue($f3, $params); */
 
 
 
-        $f3->set('jScripts', ['/js/student.js']);
+        $f3->set('jScripts', ['/js/settingsTabs.js']);
 
         $f3->set('pageTitle', 'Settings');
         $f3->set('mainHeading', 'Settings');
@@ -36,25 +36,25 @@ class SettingsController
         echo Template::instance()->render('/Views/index.html');
     }
 
-    public function insertInstrument($f3)
+    public function insertValue($f3)
     {
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
 
             $gump->validation_rules(array(
-                'addInstrument' => 'min_len,2|max_len, 40',
-                'student_sources' => 'min_len,2|max_len, 40',
+                'instrument' => 'required|min_len,2|max_len, 40',
+/*                 'student_sources' => 'min_len,2|max_len, 40',
                 'event_types'    => 'min_len,4|max_len, 40',
                 'student_regularity'    => 'min_len,4|max_len, 40',
-                'lesson_length'    => 'min_len,4|max_len, 40',
+                'lesson_length'    => 'min_len,4|max_len, 40', */
             ));
 
             $gump->filter_rules(array(
-                'addInstrument' => 'trim|sanitize_string',
-                'student_sources' => 'trim|sanitize_string',
+                'instrument' => 'trim|sanitize_string|htmlencode|noise_words',
+/*                 'student_sources' => 'trim|sanitize_string',
                 'event_types'    => 'trim|sanitize_string',
                 'student_regularity' => 'trim|sanitize_string',
-                'lesson_length'    => 'trim|sanitize_string',
+                'lesson_length'    => 'trim|sanitize_string', */
             ));
 
             $validData = $gump->run($_POST);
@@ -67,7 +67,7 @@ class SettingsController
                 /* achtung! assegnare con un or l'alternativa values ai valori ? */
                 $f3->set('values', $_POST);
 
-               /*  dumpthisvalue($_POST); */
+                /* dumpthisvalue($_POST); */
 
                 $this->selectBox($f3);
 
@@ -78,22 +78,41 @@ class SettingsController
                 echo Template::instance()->render('/Views/index.html');
             } else {
                 $sm = new \Models\SettingsModel();
-                $valuesInserted = $sm->insertInstrument($validData['addInstrument']);
+                $instrumentInserted = $sm->insertInstrument($validData['instrument']);
+                dumpthisvalue($_POST);
 
 
 
-
-                if ($valuesInserted === true) {
-                    $f3->set('alertSuccess', 'New value successfully inserted!');
+                if ($instrumentInserted === true) {
+                    /* $f3->set('alertSuccess', 'New value successfully inserted!'); */
+                    $f3->set('alertScript', 'alert(\'Success! Value inserted.\');');
+                    /* $f3->set('alertScript', 'foo'); */
                 } else {
-                    $f3->set('alertError', 'Error! The value couldn\'t be inserted.');
+                    $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
                 }
-
+                $this->selectBox($f3);
+                $f3->set('jScripts', ['/js/settingsTabs.js']);
                 $f3->set('pageTitle', 'Settings');
                 $f3->set('mainHeading', 'Settings');
                 $f3->set('content', 'Views/content/settings/settings.html');
 
                 echo Template::instance()->render('/Views/index.html');
+            }
+        }
+    }
+
+
+    protected function deleteValue($f3, $params)
+    {
+        $vid = $params['vid'];
+        if (!filter_var($vid, FILTER_VALIDATE_INT)) {
+            echo 'Error: the valuet can\'t be canceled';
+        } else {
+            $sm = new \Models\SettingsModel();
+            if ($sm->deleteInstrument($vid)) {
+                echo 'Deleted';
+            } else {
+                echo 'Error';
             }
         }
     }

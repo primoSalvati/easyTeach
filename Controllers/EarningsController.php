@@ -6,7 +6,7 @@ use \Template;
 
 use function Models\dumpthisvalue;
 
-class EarningsController
+class EarningsController 
 {
 
     public function display($f3, $params) {
@@ -40,10 +40,12 @@ class EarningsController
     public function filterOptions($f3, $params) {
 
         $studentSourcesId = $_POST['studentSourceId'];
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
 
         $data = new \Models\EarningsModel();
 
-        $totalEarnings = $data->earningsFiltered($studentSourcesId);
+        $totalEarnings = $data->earningsFiltered($studentSourcesId, $startDate, $endDate);
 
         $this->selectBox($f3);
 

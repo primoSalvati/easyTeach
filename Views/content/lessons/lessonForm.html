@@ -51,7 +51,7 @@
                         <div class="field-error">{{ @errors.date }}</div>
                     </check>
                     <!-- meaning of the ternary operators below, in case of a new lesson i will automatically receive the current date and time, in case of edit, this and other values below will be in the array $values, sometime with another name -->
-                    <input type="date" name="date" id="date" value="{{ (empty(@currentDate)) ? (@values.date) : (@currentDate) }}">
+                    <input type="date" name="date" id="date" value="{{ (empty(@values.date)) ? (@currentDate) : (@values.date) }}">
                 
             
 

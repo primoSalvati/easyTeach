@@ -4,7 +4,7 @@ namespace Controllers;
 
 use \Template;
 
-class CalendarController
+class CalendarController 
 {
 
     public function calendarLessons($f3, $params)

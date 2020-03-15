@@ -19,6 +19,21 @@ class EarningsModel extends Model
         return $earnings;
     }
 
+
+    public function earningsFiltered($studentSourcesId, $startDate, $endDate): array
+    {
+        $stmt = 'SELECT SUM(`earning`) AS `total`
+                                       FROM `events` AS `e`
+                                       LEFT JOIN `students` AS `s` ON s.id = e.students_id
+                                       WHERE (s.student_sources_id = ifnull(?,"") or ? is null)
+                                       and (e.date BETWEEN IFNULL(?,"1900-01-01") 
+                                           AND IFNULL(?,now()))';
+
+
+        $earnings = $this->db->exec($stmt, [valOrNull($studentSourcesId), valOrNull($studentSourcesId), valOrNull($startDate), valOrNull($endDate)]);
+        return $earnings;
+    }
+
     /*     public function earningsFiltered($studentSourcesId): array
     {
         $earnings = $this->db->exec('SELECT SUM(`earning`) AS `total`
@@ -30,12 +45,12 @@ class EarningsModel extends Model
     }*/
 
 
-    public function earningsFiltered($studentSourcesId): array
+/*     public function earningsFiltered($studentSourcesId, $startDate, $endDate): array
     {
         $stmt = 'SELECT SUM(`earning`) AS `total`
                                        FROM `events` AS `e`
                                        LEFT JOIN `students` AS `s` ON s.id = e.students_id';
-        if (is_null(valOrNull($studentSourcesId))) {
+        if (is_null(valOrNull($studentSourcesId)) {
             $earnings = $this->db->exec($stmt);
             return $earnings;
         }
@@ -45,7 +60,9 @@ class EarningsModel extends Model
         return $earnings;
 
 
-    }
+    } */
+
+    
     
 
 

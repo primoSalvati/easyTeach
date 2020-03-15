@@ -10,7 +10,7 @@ use function Models\dump_and_die;
 use function Models\dumpthisvalue;
 use function Models\valOrNull;
 
-class GigsController
+class GigsController 
 {
     public function index($f3, $params)
     {

@@ -22,7 +22,10 @@ abstract class Model {
     }
 }
 
-function valOrNull($val) {
+
+
+
+ function valOrNull($val) {
 
         if(empty($val)) {
             return NULL;

@@ -49,15 +49,24 @@
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
+var date = new Date().toISOString().split('T')[0];
+
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
       defaultView: 'dayGridMonth',
-      defaultDate: '2020-02-07',
+      defaultDate: date,
       header: {
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
+
+      dateClick: function(info) {
+
+        window.location.href = '/lessons/seeAllStudents?date=' + info.dateStr;
+      },
+
       events: 
           <?= ($this->raw($events))."
 " ?>

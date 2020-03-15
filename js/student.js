@@ -20,7 +20,7 @@
                 // geklickter_button.nächst_höheres_tr.löschen()
                 button.closest('tr').remove();
             } else {
-                alert('The student couldn\'t be canceled!');
+                alert('The row couldn\'t be canceled!');
             }
         });
     });

@@ -10,7 +10,7 @@ use function Models\dump_and_die;
 use function Models\dumpthisvalue;
 use function Models\valOrNull;
 
-class LessonsController
+class LessonsController 
 {
     public function index($f3, $params)
     {
@@ -59,7 +59,9 @@ class LessonsController
 
             date_default_timezone_set('Europe/Vienna');
 
-            $f3->set('currentDate', date('Y-m-d'));
+             
+            $f3->set('currentDate', !empty($_GET['date'])? $_GET['date']  : date('Y-m-d') );
+            
             $f3->set('currentTime', date('H:i'));
             $f3->set('values', $values);
 

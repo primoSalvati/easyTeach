@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
         integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="/css/layout.css" />
+    
 
-    <!--     <repeat group="{{ @csspaths }}" value="{{ @path }}">
+
+<!--     <repeat group="{{ @csspaths }}" value="{{ @path }}">
 
         <link rel="stylesheet" href="{{ @path }}">
     </repeat> -->
@@ -21,6 +23,8 @@
 
     <div class="wrapper">
         <header class="site-header">
+
+            <a class="login-link" href="/login">Login</a>
 
             <form class="header-logo">
 
@@ -103,6 +107,9 @@
     <repeat group="{{ @jScripts }}" value="{{ @script }}">
         <script src="{{ @script }}"></script>
     </repeat>
+
+
+<script>{{ @alertScript }}</script>
 
 </body>
 

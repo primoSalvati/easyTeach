@@ -12,7 +12,7 @@ use \Template;
 /* TODO: i should give the possibility to insert empty values in the select boxes */
 
 
-class StudentsController
+class StudentsController 
 {
 
     /**
