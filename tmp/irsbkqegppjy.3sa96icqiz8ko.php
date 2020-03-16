@@ -26,7 +26,6 @@
             </tr>
         </thead>
         <tbody>
-
             <?php $ctr=0; foreach (($students?:[]) as $row): $ctr++; ?>
                 <tr>
                     <td class="list-align"><?= ($ctr) ?></td>

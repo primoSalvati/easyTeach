@@ -7,13 +7,14 @@ $f3 = \Base::instance();
 if i want to use the config files instead of the settings we used in class
 
 $f3->config('Config/config.ini');
-$f3->config('App/Config/routes.ini'); 
+$f3->config('Config/routes.ini'); 
 
 */
+/* i decided to use config.ini to allow the cache, i couldn't find any documentation about an alternative way of allowing cache(for login system), please keep in mind that like that, autooad and routes are recalled in another way(from this document) */
+$f3->config('Config/config.ini');
 
-$f3->set('DEBUG', '3');
-/* is this right to enable cache like that? */
-$f3->set('CACHE', true);
+/* $f3->set('DEBUG', '3'); */
+
 
 
 

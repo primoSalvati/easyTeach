@@ -1,25 +1,14 @@
 <?php
-
 namespace Controllers;
 
-use function Models\debug_to_console;
-use function Models\dump_and_die;
-use function Models\dumpthisvalue;
-use function Models\valOrNull;
 use \Template;
 
 
 class UserController extends Controller
 {
 
-    public function index($f3, $params)
+     public function renderLogin($f3)
     {
-/*         $username = $this->f3->get('POST.username');
-        if ($this->authenticate() === true) {
-            $f3->set('login', 'Welcome' . $username);
-        } else {
-            $f3->set('login', 'Login');
-        } */
         $f3->set('pageTitle', 'Login');
         $f3->set('mainHeading', 'Login');
         $f3->set('content', 'Views/content/login.html');
@@ -27,33 +16,57 @@ class UserController extends Controller
         echo Template::instance()->render('/Views/index.html');
     }
 
-    public function authenticate()
+    public function beforeroute()
     {
-
-        // getting username and password from sent POST
-        $username = $this->f3->get('POST.username');
-        $password = $this->f3->get('POST.password');
-
-
-        $user = new \Models\UserModel($this->db);
-        $user->getByName($username);
-
-        // see if user exists
-        if ($user->dry()) {
-            $this->f3->reroute('/login');
-        }
-
-        // see if password match
-        if (password_verify($password, $user->password)) {
-            $this->f3->set('SESSION.user', $user->username);
-            $this->f3->reroute('/');
-        } else {
-            $this->f3->reroute('/login');
-        }
     }
 
-    function beforeroute()
+    function authenticate($f3, $params)
     {
-    } 
 
+        if (isset($_POST['username']) and isset($_POST['password'])) {
+
+            $gump = new \GUMP('en');
+
+            // gump validates form entries upon these rules
+            $gump->validation_rules(array(
+                'username' => 'required|alpha_numeric|max_len,100|min_len,3',
+                'password' => 'required|alpha_numeric|max_len,255|min_len,4',
+
+            ));
+
+            // further form entry sanitation
+            $gump->filter_rules(array(
+                'username' => 'trim|sanitize_string',
+                'password' => 'trim',
+            ));
+
+            // initialize gump
+            $validLoginData = $gump->run($_POST);
+
+            // getting username and password from sent POST
+            $username = $validLoginData['username'];
+            $password = $validLoginData['password'];
+
+            // Connect to server and select databse.
+            $user = new \Models\UserModel($this->db);
+            $result = $user->getUserCredentials($username, $password);
+            if ($result !== false) {
+                // start session and redirect to user dashboard
+                // $this->customSessionStore('userId', $result);
+                /* SH::customSessionStore('userId', $result); */
+                // var_dump(SH::customSessionRead('userId'));
+                // exit();
+                $f3->reroute('/');
+            } else {
+                // redirect login
+                // error
+                $f3->set('values', $_POST);
+                $f3->set('loginError', 'You have entered an invalid username or password');
+                // $f3->reroute('/login');
+                $f3->set('content', '/views/content/login.html');
+
+                echo Template::instance()->render('/views/index.php');
+            }
+        }
+    }
 }

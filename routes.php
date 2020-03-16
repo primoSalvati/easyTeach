@@ -2,7 +2,7 @@
 
 $f3->route('GET @homepage: /', 'Controllers\Homepage->index');
 /* ROUTES for the section: students */
-$f3->route('GET /login', 'Controllers\UserController->index'); 
+$f3->route('GET /login', 'Controllers\UserController->renderLogin'); 
 $f3->route('POST /authenticate', 'Controllers\UserController->authenticate'); 
 /* ROUTES for the section: students */
 

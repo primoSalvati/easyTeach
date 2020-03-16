@@ -24,7 +24,6 @@ abstract class Model {
 
 
 
-
  function valOrNull($val) {
 
         if(empty($val)) {

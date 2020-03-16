@@ -4,24 +4,20 @@ namespace Controllers;
 
 use \Template;
 
-class Controller 
+class Controller
 {
 
-    // function is called before every single routing!
-    function beforeroute()
+    // this function is called before every single routing
+    public function beforeroute()
     {
-        function beforeroute()
-        {
-            if ($this->f3->get('SESSION.user') === null) {
-                $this->f3->reroute('/login');
-                exit;
-            }
+        if ($this->f3->get('SESSION.user') === null) {
+            $this->f3->reroute('/login');
+            exit;
+        }
     }
 
-    // function is called after every single routing!
-/*     function afterroute()
+    // this function is called after every single routing
+    function afterroute()
     {
-    } */
-}
-
+    }
 }
