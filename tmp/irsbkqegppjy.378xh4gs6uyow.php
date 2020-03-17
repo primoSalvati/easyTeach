@@ -12,10 +12,11 @@
     
 
 
-<!--     <?php foreach (($csspaths?:[]) as $path): ?>
+    <?php foreach (($csspaths?:[]) as $path): ?>
 
         <link rel="stylesheet" href="<?= ($path) ?>">
-    <?php endforeach; ?> -->
+        
+    <?php endforeach; ?>
 
 </head>
 
@@ -24,7 +25,7 @@
     <div class="wrapper">
         <header class="site-header">
 
-            <a class="login-link" href="/login">Login</a>
+            <!-- <a class="login-link" href="/login">Login</a> -->
 
             <form class="header-logo">
 

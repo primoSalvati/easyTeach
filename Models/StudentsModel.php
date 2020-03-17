@@ -93,7 +93,7 @@ class StudentsModel extends Model
 
 
     /**
-     * editStudent, same functionality ad addStudent, but with the sql statement UPDATE, and of course it needs an id to modify 
+     * similar structure as addStudent, but with the sql statement UPDATE, and with an id to be received
      *
      * @param mixed $name
      * @param mixed $surname

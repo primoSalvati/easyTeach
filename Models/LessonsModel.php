@@ -5,10 +5,21 @@ namespace Models;
 class LessonsModel extends Model
 {
 
+    /**
+     * insertLesson
+     *
+     * @param mixed $event_types_id
+     * @param mixed $students_id
+     * @param mixed $date
+     * @param mixed $time
+     * @param mixed $earning
+     * @param mixed $address
+     * @param mixed $notes
+     * 
+     * @return bool
+     */
     public function insertLesson($event_types_id, $students_id, $date, $time, $earning, $address, $notes): bool
     {
-
-/* TODO:devo poter inserire più file, inoltre devo poter dare la possibilità di inserire i diversi tipi di file */
 
 
         $lessonInserted = $this->db->exec('INSERT INTO `events` (`date`, `time`, `address`, `earning`, `event_types_id`, `students_id`, `notes`) VALUES (?, ?, ?, ?, ?, ?, ?)', [$date, $time, $address, $earning, $event_types_id, $students_id, $notes]);
@@ -17,6 +28,12 @@ class LessonsModel extends Model
 
     }
 
+    /**
+     * lessons, extract all lessons. Inside the DB table `events`, there is a foreign-key constraint: students_id, connected with the table `students`, in order to get students name and surname, i need the LEFT JOINS here, also, i want the date to be a readable format, using DATE_FORMAT.
+     * 
+     *
+     * @return array
+     */
     public function lessons(): array
     {
         return $this->db->exec(
@@ -42,14 +59,23 @@ class LessonsModel extends Model
     }
 
 
-    public function lessonDetails(int $id)
+
+
+    /**
+     * lessonDetails
+     *
+     * @param integer $id
+     * 
+     * @return array
+     */
+    public function lessonDetails(int $id): array
     {
         $lessonDetails = $this->db->exec(
             'SELECT events.*,
             DATE_FORMAT(events.date,"%d %b %Y") as `format_date`,
             students.name,
             students.surname,
-            /* i extract these two values (instruments.id and lesson_length_id) because , on lesson edit, the select boxes were not properly working with the attribute selected */
+            /* i extract these two values (instruments.id and lesson_length_id) because, on lesson edit, the select boxes do not work properly with the attribute selected */
             instruments.id AS instruments_id,
             instruments.type AS instrument,
             lesson_length.id AS lesson_length_id,
@@ -73,8 +99,9 @@ class LessonsModel extends Model
         return $lessonDetails[0];
     }
 
-/* Achtung, questa funzione mi serve dopo, se voglio vedere tutte le lezioni precedenti di uno studente*/
-    public function allLessonsForAStudent(int $id)
+/* I will need this function to insert the feature of select all lesosns of a student */
+
+/*     public function allLessonsForAStudent(int $id)
     {
         $lessonDetails = $this->db->exec(
             'SELECT * FROM events WHERE events.students_id = ?', $id);
@@ -86,10 +113,22 @@ class LessonsModel extends Model
         }
 
         return $lessonDetails[0];
-    }
+    } */
 
 
-/* ACHTUNG, i can't edit the instrument until i make the lookup table instruments_students, see what about lesson length (it will have to do with calendar, later) */
+    /**
+     * editLesson
+     *
+     * @param mixed $students_id
+     * @param mixed $date
+     * @param mixed $time
+     * @param mixed $earning
+     * @param mixed $address
+     * @param mixed $notes
+     * @param integer $id
+     * 
+     * @return bool
+     */
     public function editLesson($students_id, $date, $time, $earning, $address, $notes, int $id): bool
     {
 
@@ -101,14 +140,16 @@ class LessonsModel extends Model
     }
 
 
+
+
     /**
-     * deleteLesson, cancels lesson, given the id
+     * deleteLesson cancels the lesson, given the id
      *
      * @param integer $id
      * 
-     * @return void
+     * @return bool
      */
-    public function deleteLesson(int $id)
+    public function deleteLesson(int $id): bool
     {
         $isDeleted = $this->db->exec('DELETE FROM `events` WHERE `id` = ?', $id);
         return $isDeleted;

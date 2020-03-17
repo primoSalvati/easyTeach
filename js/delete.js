@@ -13,8 +13,8 @@
         // $(this) -> der geklickte Button, wir holen uns die aufzurufende URL. $(this) erzeugt ein jQuery Object. 
         let button = $(this);
         let url = button.data('url');
-       /*  console.log(url);
-        return; */
+/*  console.log(url);
+        return;  */
         // die eben ermittelte Adresse per AJAX aufrufen
         $.get(url, function (data) {
         

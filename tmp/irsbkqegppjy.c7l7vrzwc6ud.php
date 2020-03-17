@@ -5,32 +5,6 @@
   <meta charset='utf-8' />
 
 
-
-  <link href='/assets/demo-to-codepen.css' rel='stylesheet' />
-
-  <link href='https://unpkg.com/@fullcalendar/core@4.4.0/main.min.css' rel='stylesheet' />
-
-  <link href='https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.css' rel='stylesheet' />
-
-  <link href='https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.css' rel='stylesheet' />
-
-
-  <script src='/assets/demo-to-codepen.js'></script>
-
-  <script src='https://unpkg.com/@fullcalendar/core@4.4.0/main.min.js'></script>
-
-
-
-
-  <script src='https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js'></script>
-
-  <script src='https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js'></script>
-
-  <script src='https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js'></script>
-
-
-
-
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');

@@ -1,5 +1,5 @@
 
-/* non dovesse funzionare racchiudo tutto in una funziona anonnima? prova comunque e studia le funzioni anonime! */
+/* TODO: leave the current tab after any submission */
     function openCity(cityName) {
         var i;
         var x = document.getElementsByClassName("city");

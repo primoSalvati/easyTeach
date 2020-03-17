@@ -1,9 +1,9 @@
-<!-- in case i want to show an alert success with php -->
-<?php echo $this->render('/Views/modules/alert.html',NULL,get_defined_vars(),0); ?>
 <div>
     <button class="pure-button" onclick="openCity('instruments')">Instruments</button>
     <button class="pure-button" onclick="openCity('event_types')">Gig Types</button>
-    <button class="pure-button" onclick="openCity('student_source')">Student Source</button>
+    <button class="pure-button" onclick="openCity('student_sources')">Student Sources</button>
+    <button class="pure-button" onclick="openCity('lesson_lenght')">Lesson Length</button>
+    <button class="pure-button" onclick="openCity('student_regularity')">Student Regularity</button>
 </div>
 
 <div id="instruments" class="city">
@@ -33,23 +33,22 @@
         <tbody>
             <?php foreach (($instruments?:[]) as $inst): ?>
                 <tr>
-                    <!-- <form method="POST"> -->
+ <!--                    <form method="POST"></form> -->
                         <td><?= ($inst['type']) ?></td>
 
-                        <td>
-                            <!-- <input type="submit" class="pure-button" value="Edit"
-                                formaction="/settings/<?= ($inst['id']) ?>/edit"> -->
+<!--                         <td>
+                            <input type="submit" class="pure-button" value="Edit"
+                                formaction="/settings/<?= ($inst['id']) ?>/edit">
                         </td>
-                    <!-- </form> -->
+                    </form> -->
                     <td><button class="pure-button btn-delete"
-                            data-url="/settingsInst/<?= ($inst['id']) ?>/delete">Delete</button>
+                            data-url="/settings/<?= ($inst['id']) ?>/delete">Delete</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <?= (var_dump($instruments))."
-" ?>
+
 </div>
 
 
@@ -90,10 +89,10 @@
                         <td><?= ($event['type']) ?></td>
 
                         <td><input type="submit" class="pure-button" value="Edit"
-                                formaction="/settings/<?= ($event_types['id']) ?>/edit"></td>
+                                formaction="/settings/<?= ($event['id']) ?>/edit"></td>
                     </form>
                     <td><button class="pure-button btn-delete"
-                            data-url="/settings/<?= ($event_types['id']) ?>/delete">Delete</button>
+                            data-url="/settings/<?= ($event['id']) ?>/delete">Delete</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -101,44 +100,46 @@
 
 </div>
 
-<!-- <div id="student_source" class="city" style="display:none">
-        <h3>Insert the instrument(s) you teach</h3>
-        <div class="form-inline">
-            <form action="" method="post" class="pure-form pure-form-stacked">
-                <?php if ($errors['instrument']): ?>
-                    <div class="field-error"><?= ($errors['instrument']) ?></div>
-                <?php endif; ?>
-                <input type="text" name="instrument">
-
-                <input type="submit" class="pure-button inline-button" value="Save">
-            </form>
-        </div>
 
 
+<div id="student_sources" class="city" style="display:none">
+    <h3>Insert the sources of your students (private, different schools...)</h3>
+    <div class="form-inline">
+        <form action="" method="post" class="pure-form pure-form-stacked">
+            <?php if ($errors['student_sources']): ?>
+                <div class="field-error"><?= ($errors['student_sources']) ?></div>
+            <?php endif; ?>
+            <input type="text" name="student_sources">
+
+            <input type="submit" class="pure-button inline-button" value="Save">
+        </form>
+    </div>
 
 
-        <table class="pure-table pure-table-bordered">
-            <thead>
+
+
+    <table class="pure-table pure-table-bordered">
+        <thead>
+            <tr>
+                <th>Your Student Sources</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach (($student_sources?:[]) as $source): ?>
                 <tr>
-                    <th>Your instruments</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <form method="POST">
+                        <td><?= ($source['source']) ?></td>
+
+                        <td><input type="submit" class="pure-button" value="Edit"
+                                formaction="/settings/<?= ($source['id']) ?>/edit"></td>
+                    </form>
+                    <td><button class="pure-button btn-delete"
+                            data-url="/settings/<?= ($source['id']) ?>/delete">Delete</button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach (($instruments?:[]) as $instrument): ?>
-                    <tr>
-                        <form method="POST">
-                            <td><?= ($instrument['type']) ?></td>
+            <?php endforeach; ?>
+    </table>
 
-                            <td><input type="submit" class="pure-button" value="Edit"
-                                    formaction="/settings/<?= ($instrument['id']) ?>/edit"></td>
-                        </form>
-                        <td><button class="pure-button btn-delete"
-                                data-url="/settings/<?= ($instrument['id']) ?>/delete">Delete</button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-        </table>
-
-</div> -->
+</div>
