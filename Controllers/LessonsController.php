@@ -20,7 +20,7 @@ class LessonsController
         $f3->set('lessons', $lessons);
 
 
-        $f3->set('jScripts', ['/js/student.js']);
+        $f3->set('jScripts', ['/js/delete.js']);
 
         $f3->set('pageTitle', 'Lessons');
         $f3->set('mainHeading', 'Lessons');
@@ -37,7 +37,7 @@ class LessonsController
         $students = $sm->students();
         $f3->set('students', $students);
         /* TODO: maybe it's better to show the students details on a javascript alert, so that the application doesn't need to lead to another page */
-        $f3->set('jScripts', ['/js/student.js']);
+        $f3->set('jScripts', ['/js/delete.js']);
 
         $f3->set('pageTitle', 'Select Student');
         $f3->set('mainHeading', 'Select Student');

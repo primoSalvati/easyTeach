@@ -15,19 +15,20 @@ class SettingsController
 
 
     /* chiamare la funzione __construct? */
-    public function index($f3)
+    public function index($f3, $params)
     {
 
         $im = new \Models\MultipleChoiceModel();
         $instruments = $im->allInstruments();
         $f3->set('instruments', $instruments);
 
-        $this->insertValue($f3);
-        /* $this->deleteValue($f3, $params); */
+     /*    $this->insertInstrument($f3); */
+        
 
 
 
-        $f3->set('jScripts', ['/js/settingsTabs.js']);
+        $f3->set('jScripts', ['/js/settingsTabs.js', '/js/delete.js']);
+       
 
         $f3->set('pageTitle', 'Settings');
         $f3->set('mainHeading', 'Settings');
@@ -36,7 +37,7 @@ class SettingsController
         echo Template::instance()->render('/Views/index.html');
     }
 
-    public function insertValue($f3)
+    public function insertInstrument($f3)
     {
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
@@ -102,11 +103,11 @@ class SettingsController
     }
 
 
-    protected function deleteValue($f3, $params)
+    public function deleteInstrument($f3, $params)
     {
-        $vid = $params['vid'];
+        $vid = $params['instid'];
         if (!filter_var($vid, FILTER_VALIDATE_INT)) {
-            echo 'Error: the valuet can\'t be canceled';
+            echo 'Error: the value can\'t be canceled';
         } else {
             $sm = new \Models\SettingsModel();
             if ($sm->deleteInstrument($vid)) {

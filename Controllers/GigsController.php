@@ -21,7 +21,7 @@ class GigsController
 
 
 
-        $f3->set('jScripts', ['/js/student.js']);
+        $f3->set('jScripts', ['/js/delete.js']);
 
         $f3->set('pageTitle', 'Gigs');
         $f3->set('mainHeading', 'Gigs');

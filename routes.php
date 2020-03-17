@@ -29,7 +29,6 @@ $f3->route('GET /lessons/@lid/edit', 'Controllers\LessonsController->getCompiled
 $f3->route('POST /lessons/@lid/edit', 'Controllers\LessonsController->editLesson');
 $f3->route('GET /lessons/@lid/delete', 'Controllers\LessonsController->deleteLesson');
 
-/* TODO: weil ich das gleiche .js File für delete Lesson und Student verwende, (wenn es ok ist), sollte ich das File umbenennen--nicht mehr student.js sondern delete.js */
 /* TODO: validare nel server se uno studente esiste già! */
 
 /* ROUTES for the section: calendar */
@@ -59,8 +58,8 @@ $f3->route('GET @deleteGig: /gigs/@gid/delete', 'Controllers\GigsController->del
 /* ROUTES for the section: settings */
 
 $f3->route('GET @settings: /settings', 'Controllers\SettingsController->index');
-$f3->route('POST @settings: /settings', 'Controllers\SettingsController->insertValue');
-$f3->route('GET /settings/@vid/delete', 'Controllers\SettingsController->deleteValue');
+$f3->route('POST @settingsPost: /settings', 'Controllers\SettingsController->insertInstrument');
+$f3->route('GET @settingsDeleteInst: /settingsInst/@instid/delete', 'Controllers\SettingsController->deleteInstrument');
 
 
 

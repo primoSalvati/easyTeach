@@ -30,7 +30,7 @@ class StudentsController
         $f3->set('students', $students);
 
 
-        $f3->set('jScripts', ['/js/student.js']);
+        $f3->set('jScripts', ['/js/delete.js']);
 
         $f3->set('pageTitle', 'Students');
         $f3->set('mainHeading', 'Students');

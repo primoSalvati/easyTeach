@@ -13,8 +13,14 @@
         // $(this) -> der geklickte Button, wir holen uns die aufzurufende URL. $(this) erzeugt ein jQuery Object. 
         let button = $(this);
         let url = button.data('url');
+       /*  console.log(url);
+        return; */
         // die eben ermittelte Adresse per AJAX aufrufen
         $.get(url, function (data) {
+        
+
+
+
             if (data === 'Deleted') {
                 // Bei Erfolg die Zeile aus der Tabelle löschen:
                 // geklickter_button.nächst_höheres_tr.löschen()

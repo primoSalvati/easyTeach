@@ -1,4 +1,5 @@
 <table class="pure-table pure-table-bordered">
+    <h3>Select a student for this lesson</h3>
     <thead>
         <tr>
             <th>Name</th>

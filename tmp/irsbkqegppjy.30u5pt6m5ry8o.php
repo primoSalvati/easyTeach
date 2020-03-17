@@ -1,4 +1,5 @@
-<form class="pure-form" method="post">
+<form class="pure-form pure-form-stacked" method="post">
+
 <h2>You Earned</h2>
     <!-- display the earning -->
 <h3><input type="text"  class="display" id="display" value="<?= (empty($sum) ? 0 : $sum) ?> Euro" readonly></h3>
@@ -17,12 +18,16 @@
             </option>
         <?php endforeach; ?>
     </select>
-    <input type="date" name="startDate">
-    <input type="date" name="endDate">
+
+    <label for="startDate">From date</label>
+    <input type="date" name="startDate" value="<?= ($startDate) ?>">
+    <label for="endDate">To date</label>
+    <input type="date" name="endDate" value="<?= ($endDate) ?>">
 
 <p><button type="submit" class="pure-button">GO</button></p>
 
 </div>
+
 
 
 

@@ -90,11 +90,7 @@ class StudentsModel extends Model
         return $isDeleted;
     }
 
-/* i don't need the following  function, first of all because it makes the same as the function students(), and also because it has no reference to any id, and the getCompiled form in controller uses another one! anyway i keep it commented in case of errors... */
-/*     public function getCompiledForm()
-    {
-        return $this->db->exec('SELECT * FROM `students`');
-    } */
+
 
     /**
      * editStudent, same functionality ad addStudent, but with the sql statement UPDATE, and of course it needs an id to modify 
@@ -124,12 +120,5 @@ class StudentsModel extends Model
         return $isStored;
     }
 
-/*     function valOrNull($val) {
 
-        if(empty($val)) {
-            return NULL;
-        }
-
-        return $val;
-    } */
  }
