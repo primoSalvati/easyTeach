@@ -10,7 +10,7 @@
     <h3>Insert the instrument(s) you teach</h3>
     <div class="form-inline">
         <!-- i need to put the current url of the POST route in the action, a different value for every tab of the page: here action="/settings/instruments" -->
-        <form action="" method="post" class="pure-form pure-form-stacked">
+        <form action="/settings" method="post" class="pure-form pure-form-stacked">
             <?php if ($errors['instrument']): ?>
                 <div class="field-error"><?= ($errors['instrument']) ?></div>
             <?php endif; ?>
@@ -43,7 +43,7 @@
                         </td>
                     </form> -->
                     <td><button class="pure-button btn-delete"
-                            data-url="/settings/<?= ($inst['id']) ?>/delete">Delete</button>
+                            data-url="/settings/deleteInst/<?= ($inst['id']) ?>">Delete</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -80,21 +80,22 @@
         <thead>
             <tr>
                 <th>Your gig types</th>
-                <th>Edit</th>
+                <!-- <th>Edit</th> -->
                 <th>Delete</th>
             </tr>
         </thead>
+    
         <tbody>
             <?php foreach (($event_types?:[]) as $event): ?>
                 <tr>
-                    <form method="POST">
+                    <!-- <form method="POST"> -->
                         <td><?= ($event['type']) ?></td>
 
-                        <td><input type="submit" class="pure-button" value="Edit"
-                                formaction="/settings/<?= ($event['id']) ?>/edit"></td>
-                    </form>
+<!--                         <td><input type="submit" class="pure-button" value="Edit"
+                                formaction="/settings/<?= ($event['id']) ?>/edit"></td> -->
+                    <!-- </form> -->
                     <td><button class="pure-button btn-delete"
-                            data-url="/settings/<?= ($event['id']) ?>/delete">Delete</button>
+                            data-url="/settings/deleteEvType/<?= ($event['id']) ?>">Delete</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -104,10 +105,10 @@
 
 
 
-<div id="student_sources" class="city" style="display:none">
+<div id="student_sources" class="city" style="display:<?= ($activeTab === 'student_sources' ? 'block' : 'none') ?>">
     <h3>Insert the sources of your students (private, different schools...)</h3>
     <div class="form-inline">
-        <form action="" method="post" class="pure-form pure-form-stacked">
+        <form action="/settings/studentSources" method="post" class="pure-form pure-form-stacked">
             <?php if ($errors['student_sources']): ?>
                 <div class="field-error"><?= ($errors['student_sources']) ?></div>
             <?php endif; ?>
@@ -124,21 +125,23 @@
         <thead>
             <tr>
                 <th>Your Student Sources</th>
-                <th>Edit</th>
+                <!-- <th>Edit</th> -->
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach (($student_sources?:[]) as $source): ?>
+            <?php foreach (($student_sources?:[]) as $val): ?>
                 <tr>
-                    <form method="POST">
-                        <td><?= ($source['source']) ?></td>
+ <!--                    <form method="POST"></form> -->
+                        <td><?= ($val['source']) ?></td>
 
-                        <td><input type="submit" class="pure-button" value="Edit"
-                                formaction="/settings/<?= ($source['id']) ?>/edit"></td>
-                    </form>
+<!--                         <td>
+                            <input type="submit" class="pure-button" value="Edit"
+                                formaction="/settings/<?= ($inst['id']) ?>/edit">
+                        </td>
+                    </form> -->
                     <td><button class="pure-button btn-delete"
-                            data-url="/settings/<?= ($source['id']) ?>/delete">Delete</button>
+                            data-url="/settings/deleteSource/<?= ($val['id']) ?>">Delete</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -148,10 +151,10 @@
 
 
 
-<div id="lesson_length" class="city" style="display:none">
+<div id="lesson_length" class="city" style="display:<?= ($activeTab === 'lesson_length' ? 'block' : 'none') ?>">
     <h3>Lesson Lengths</h3>
     <div class="form-inline">
-        <form action="" method="post" class="pure-form pure-form-stacked">
+        <form action="/settings/lessonLength" method="post" class="pure-form pure-form-stacked">
             <?php if ($errors['lesson_length']): ?>
                 <div class="field-error"><?= ($errors['lesson_length']) ?></div>
             <?php endif; ?>
@@ -168,21 +171,22 @@
         <thead>
             <tr>
                 <th>Your Lesson Lengths</th>
-                <th>Edit</th>
+                <!-- <th>Edit</th> -->
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach (($lesson_length?:[]) as $length): ?>
                 <tr>
-                    <form method="POST">
+<!--                     <form method="POST"> -->
                         <td><?= ($length['length']) ?></td>
 
-                        <td><input type="submit" class="pure-button" value="Edit"
+<!--                         <td><input type="submit" class="pure-button" value="Edit"
                                 formaction="/settings/<?= ($length['id']) ?>/edit"></td>
-                    </form>
-                    <td><button class="pure-button btn-delete"
-                            data-url="/settings/<?= ($length['id']) ?>/delete">Delete</button>
+                    </form> -->
+                    <td>
+                        <button class="pure-button btn-delete"
+                            data-url="/settings/deleteLessLength/<?= ($length['id']) ?>">Delete</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -191,10 +195,10 @@
 </div>
 
 
-<div id="student_regularity" class="city" style="display:none">
+<div id="student_regularity" class="city" style="display:<?= ($activeTab === 'student_regularity' ? 'block' : 'none') ?>">
     <h3>Insert the regularity of your students (once a week, one time, every two weeks...)</h3>
     <div class="form-inline">
-        <form action="" method="post" class="pure-form pure-form-stacked">
+        <form action="/settings/studentRegularity" method="post" class="pure-form pure-form-stacked">
             <?php if ($errors['student_regularity']): ?>
                 <div class="field-error"><?= ($errors['student_regularity']) ?></div>
             <?php endif; ?>
@@ -211,21 +215,21 @@
         <thead>
             <tr>
                 <th>Your Student Regularities</th>
-                <th>Edit</th>
+                <!-- <th>Edit</th> -->
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach (($student_regularity?:[]) as $regularity): ?>
                 <tr>
-                    <form method="POST">
+                    <!-- <form method="POST"> -->
                         <td><?= ($regularity['type']) ?></td>
-
+<!-- 
                         <td><input type="submit" class="pure-button" value="Edit"
                                 formaction="/settings/<?= ($regularity['id']) ?>/edit"></td>
-                    </form>
+                    </form> -->
                     <td><button class="pure-button btn-delete"
-                            data-url="/settings/<?= ($regularity['id']) ?>/delete">Delete</button>
+                            data-url="/settings/deleteRegul/<?= ($regularity['id']) ?>">Delete</button>
                     </td>
                 </tr>
             <?php endforeach; ?>

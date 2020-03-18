@@ -124,7 +124,7 @@ class SettingsModel extends Model
    */
   public function insertStudentRegularity($studentRegularity): bool
   {
-    $studentRegularityInserted = $this->db->exec('INSERT INTO `event_types` (type) VALUES (?)', [$studentRegularity]);
+    $studentRegularityInserted = $this->db->exec('INSERT INTO `student_regularity` (type) VALUES (?)', [$studentRegularity]);
     return $studentRegularityInserted;
   }
 

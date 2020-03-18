@@ -11,7 +11,7 @@ use function Models\dumpthisvalue;
 use function Models\valOrNull;
 
 class SettingsController 
-{
+{/* TODO: cambia i nomi delle classi dei tabs da city a  nomi accettabili! */
 
     protected function selectBox($f3)
     {
@@ -37,7 +37,7 @@ class SettingsController
 
         $this->selectBox($f3);
         
-        $f3->set('jScripts', ['/js/settingsTabs.js', '/js/delete.js']);
+        $f3->set('jScripts', ['/js/delete.js', '/js/settingsTabs.js']);
 
         /* $f3->set('activeTab', 'instruments'); */
 
@@ -56,14 +56,14 @@ class SettingsController
     }
 
 
-    public function insertInstrument($f3)
+    public function insertInstruments($f3)
     {
          $f3->set('activeTab', 'instruments');
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
 
             $gump->validation_rules(array(
-                'instrument' => 'min_len,2|max_len, 40',
+                'instrument' => 'required|min_len,2|max_len, 40',
             ));
 
             $gump->filter_rules(array(
@@ -106,6 +106,22 @@ class SettingsController
     }
 
 
+        public function deleteInstruments($f3, $params)
+    {
+        $vid = $params['instrId'];
+        if (!filter_var($vid, FILTER_VALIDATE_INT)) {
+            echo 'Error: the value can\'t be canceled';
+        } else {
+            $sm = new \Models\SettingsModel();
+            if ($sm->deleteInstrument($vid)) {
+                echo 'Deleted';
+            } else {
+                echo 'Error';
+            }
+        }
+    }
+
+
 
 
 
@@ -113,11 +129,12 @@ class SettingsController
 
     public function insertEventTypes($f3)
     {
+        $f3->set('activeTab', 'event_types');
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
 
             $gump->validation_rules(array(
-                'event_types'    => 'min_len,4|max_len, 40',
+                'event_types'    => 'required|min_len,4|max_len, 40',
             ));
 
             $gump->filter_rules(array(
@@ -157,25 +174,33 @@ class SettingsController
         }
     }
 
-    public function insertStudentSources($f3)
+            public function deleteEventTypes($f3, $params)
     {
+        $vid = $params['evTypeId'];
+        if (!filter_var($vid, FILTER_VALIDATE_INT)) {
+            echo 'Error: the value can\'t be canceled';
+        } else {
+            $sm = new \Models\SettingsModel();
+            if ($sm->deleteEventType($vid)) {
+                echo 'Deleted';
+            } else {
+                echo 'Error';
+            }
+        }
+    }
+
+      public function insertStudentSources($f3)
+    {
+         $f3->set('activeTab', 'student_sources');
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
 
             $gump->validation_rules(array(
-                'student_sources'    => 'required|min_len,4|max_len, 40',
-                /*                 'student_sources' => 'min_len,2|max_len, 40',
-                'event_types'    => 'min_len,4|max_len, 40',
-                'student_regularity'    => 'min_len,4|max_len, 40',
-                'lesson_length'    => 'min_len,4|max_len, 40', */
+                'student_sources' => 'required|min_len,2|max_len, 40',
             ));
 
             $gump->filter_rules(array(
-                'student_sources'    => 'trim|sanitize_string',
-                /*                 'student_sources' => 'trim|sanitize_string',
-                'event_types'    => 'trim|sanitize_string',
-                'student_regularity' => 'trim|sanitize_string',
-                'lesson_length'    => 'trim|sanitize_string', */
+                'student_sources' => 'trim|sanitize_string|htmlencode|noise_words',
             ));
 
             $validData = $gump->run($_POST);
@@ -185,44 +210,192 @@ class SettingsController
             if ($validData === false) {
                 $errors = $gump->get_errors_array();
                 $f3->set('errors', $errors);
-
+            
                 $f3->set('values', $_POST);
 
-
+ 
                 $this->selectBox($f3);
                 $this->index($f3);
 
             } else {
                 $sm = new \Models\SettingsModel();
-                $studentSourcesInserted = $sm->insertStudentSource($validData['student_sources']);
+                $StudentSourcesInserted = $sm->insertStudentSource($validData['student_sources']);
 
-                if ($studentSourcesInserted === true) {
 
+
+                if ($StudentSourcesInserted === true) {
+                  
                     $f3->set('alertScript', 'alert(\'Success! Value inserted.\');');
-                } else {
+                 
+                } 
+                 else {
                     $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
                 }
+                 
                 $this->selectBox($f3);
                 $this->index($f3);
-                
             }
         }
     }
 
-    public function deleteValue($f3, $params)
+            public function deleteStudentSources($f3, $params)
     {
-        $vid = $params['valueid'];
-        if (!filter_var($vid, FILTER_VALIDATE_INT)) {
+        $ssid = $params['stSourceId'];
+        if (!filter_var($ssid, FILTER_VALIDATE_INT)) {
             echo 'Error: the value can\'t be canceled';
         } else {
             $sm = new \Models\SettingsModel();
-            if ($sm->deleteInstrument($vid)) {
+            if ($sm->deleteStudentSource($ssid)) {
                 echo 'Deleted';
             } else {
                 echo 'Error';
             }
         }
     }
+
+
+
+    public function insertLessonLengths($f3)
+    {
+        
+
+        if (!empty($_POST)) {
+            $gump = new \GUMP('en');
+
+            $gump->validation_rules(array(
+                'lesson_length' => 'required|min_len,2|max_len, 40',
+            ));
+
+            $gump->filter_rules(array(
+                /* if i put noisewords as filter, it cancles the value 2 (like 2 hours) */
+                'lesson_length' => 'trim|sanitize_string',
+            ));
+
+            $validData = $gump->run($_POST);
+
+
+
+            if ($validData === false) {
+                $errors = $gump->get_errors_array();
+                $f3->set('activeTab', 'lesson_length');
+                $f3->set('errors', $errors);
+                
+            
+                $f3->set('values', $_POST);
+
+ 
+                $this->selectBox($f3);
+                $this->index($f3);
+
+            } else {
+                $sm = new \Models\SettingsModel();
+                $lessonLengthInserted = $sm->insertLessonLength($validData['lesson_length']);
+
+
+
+                if ($lessonLengthInserted === true) {
+                  
+                    $f3->set('alertScript', 'alert(\'Success! Value inserted.\');');
+                 
+                } 
+                 else {
+                    $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
+                }
+                $f3->set('activeTab', 'lesson_length');
+                $this->selectBox($f3);
+                $this->index($f3);
+            }
+        }
+    }
+
+
+    public function deleteLessonLengths($f3, $params)
+    {
+        $vid = $params['lesLenghId'];
+        if (!filter_var($vid, FILTER_VALIDATE_INT)) {
+            echo 'Error: the value can\'t be canceled';
+        } else {
+            $sm = new \Models\SettingsModel();
+            if ($sm->deleteLessonLength($vid)) {
+                echo 'Deleted';
+            } else {
+                echo 'Error';
+            }
+        }
+    }
+
+
+
+        public function insertStudentRegularities($f3)
+    {
+        
+
+        if (!empty($_POST)) {
+            $gump = new \GUMP('en');
+
+            $gump->validation_rules(array(
+                'student_regularity' => 'required|min_len,2|max_len, 40',
+            ));
+
+            $gump->filter_rules(array(
+                /* if i put noisewords as filter, it cancles the value 2 (like 2 hours) */
+                'student_regularity' => 'trim|sanitize_string',
+            ));
+
+            $validData = $gump->run($_POST);
+
+
+
+            if ($validData === false) {
+                $errors = $gump->get_errors_array();
+                $f3->set('activeTab', 'student_regularity');
+                $f3->set('errors', $errors);
+                
+            
+                $f3->set('values', $_POST);
+
+ 
+                $this->selectBox($f3);
+                $this->index($f3);
+
+            } else {
+                $sm = new \Models\SettingsModel();
+                $studentRegularityInserted = $sm->insertStudentRegularity($validData['student_regularity']);
+
+
+
+                if ($studentRegularityInserted === true) {
+                  
+                    $f3->set('alertScript', 'alert(\'Success! Value inserted.\');');
+                 
+                } 
+                 else {
+                    $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
+                }
+                $f3->set('activeTab', 'student_regularity');
+                $this->selectBox($f3);
+                $this->index($f3);
+            }
+        }
+    }
+
+
+        public function deleteStudentRegularities($f3, $params)
+    {
+        $vid = $params['stRegId'];
+        if (!filter_var($vid, FILTER_VALIDATE_INT)) {
+            echo 'Error: the value can\'t be canceled';
+        } else {
+            $sm = new \Models\SettingsModel();
+            if ($sm->deleteStudentRegularity($vid)) {
+                echo 'Deleted';
+            } else {
+                echo 'Error';
+            }
+        }
+    }
+
+
 
 
 
