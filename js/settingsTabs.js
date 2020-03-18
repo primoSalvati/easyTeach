@@ -1,10 +1,10 @@
 
 /* TODO: leave the current tab after any submission */
-    function openCity(cityName) {
+    function openTab(tabName) {
         var i;
-        var x = document.getElementsByClassName("city");
+        var x = document.getElementsByClassName("settingsTabs");
         for (i = 0; i < x.length; i++) {
             x[i].style.display = "none";
         }
-        document.getElementById(cityName).style.display = "block";
+        document.getElementById(tabName).style.display = "block";
     }

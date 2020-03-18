@@ -55,24 +55,26 @@ $f3->route('GET @deleteGig: /gigs/@gid/delete', 'Controllers\GigsController->del
 
 $f3->route('GET @settings: /settings', 'Controllers\SettingsController->index');
 
-$f3->route('POST /settings', 'Controllers\SettingsController->insertInstruments');
+$f3->route('POST @settings: /settings', 'Controllers\SettingsController->insertInstruments');
 /* the routes delete, as soon as they where many, started to make confusion, and i named them all differently, it works like that */
-$f3->route('GET /settings/deleteInst/@instrId', 'Controllers\SettingsController->deleteInstruments');
+$f3->route('GET @settings:  /settings/deleteInst/@instrId', 'Controllers\SettingsController->deleteInstruments');
+/* teh GET route is meant to refresh page after inserting a value, and go back to the index function */
+$f3->route('GET @settings:  /settings/eventTypes', 'Controllers\SettingsController->index');
+$f3->route('POST @setInsertInst: /settings/eventTypes', 'Controllers\SettingsController->insertEventTypes');
+$f3->route('GET @setDelInst:  /settings/deleteEvType/@evTypeId', 'Controllers\SettingsController->deleteEventTypes');
 
-$f3->route('POST /settings/eventTypes', 'Controllers\SettingsController->insertEventTypes');
-$f3->route('GET /settings/deleteEvType/@evTypeId', 'Controllers\SettingsController->deleteEventTypes');
+$f3->route('GET @refreshInsertSource:  /settings/studentSources', 'Controllers\SettingsController->index');
+$f3->route('POST @setInsertSource:  /settings/studentSources', 'Controllers\SettingsController->insertStudentSources');
+$f3->route('GET @setDelSource:  /settings/deleteSource/@stSourceId', 'Controllers\SettingsController->deleteStudentSources');
 
-$f3->route('POST /settings/studentSources', 'Controllers\SettingsController->insertStudentSources');
-$f3->route('GET /settings/deleteSource/@stSourceId', 'Controllers\SettingsController->deleteStudentSources');
+$f3->route('GET @refreshInsertLength:  /settings/lessonLength', 'Controllers\SettingsController->index');
+$f3->route('POST @setInsertLength:  /settings/lessonLength', 'Controllers\SettingsController->insertLessonLengths');
+$f3->route('GET @setDelLength:  /settings/deleteLessLength/@lesLenghId', 'Controllers\SettingsController->deleteLessonLengths');
 
-$f3->route('POST /settings/lessonLength', 'Controllers\SettingsController->insertLessonLengths');
-$f3->route('GET /settings/deleteLessLength/@lesLenghId', 'Controllers\SettingsController->deleteLessonLengths');
+$f3->route('GET @refreshInsertRegul:  /settings/studentRegularity', 'Controllers\SettingsController->index');
+$f3->route('POST @setInsertRegul:  /settings/studentRegularity', 'Controllers\SettingsController->insertStudentRegularities');
+$f3->route('GET @setDelRegul:  /settings/deleteRegul/@stRegId', 'Controllers\SettingsController->deleteStudentRegularities');
 
-$f3->route('POST /settings/studentRegularity', 'Controllers\SettingsController->insertStudentRegularities');
-$f3->route('GET /settings/deleteRegul/@stRegId', 'Controllers\SettingsController->deleteStudentRegularities');
-
-
-/* todo, cambiare classi da city a uno buono, evitare a tutti i costi che lezione venga cancellata!, mettere named routes , si è ripresentato il problema con il refresh page, creare route GET? per ogni insert?*/
  
 
 

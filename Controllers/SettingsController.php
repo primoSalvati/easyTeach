@@ -24,6 +24,10 @@ class SettingsController
         $eventTypes = $selectBox->eventTypes();
 
 
+        /* This array function is meant to remove the value "Music Lesson" from the array, so that it won't show in the section gig. Necessary because otherwise the user can insert a lesson without a student, that will show up in lessons section with an empty student field */
+        array_splice($eventTypes, 0, 1);
+
+
         $f3->set('event_types', $eventTypes);
         $f3->set('student_sources', $studentSources);
         $f3->set('instruments', $inst);

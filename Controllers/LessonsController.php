@@ -58,12 +58,16 @@ class LessonsController
             $this->selectBox($f3);
 
             date_default_timezone_set('Europe/Vienna');
+            /* This line is meant to have, in the address field, the value home for private students */
+            $f3->set('address', $values['source'] === 'Private' ? $values['source'] = 'Home' : $values['source']);
 
-             
             $f3->set('currentDate', !empty($_GET['date'])? $_GET['date']  : date('Y-m-d') );
             
             $f3->set('currentTime', date('H:i'));
+            
             $f3->set('values', $values);
+
+            /* dumpThisValue($values); */
 
             $f3->set('pageTitle', 'Insert lesson');
             $f3->set('mainHeading', 'Insert lesson');

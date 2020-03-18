@@ -1,12 +1,12 @@
 <div>
-    <button class="pure-button" onclick="openCity('instruments')">Instruments</button>
-    <button class="pure-button" onclick="openCity('event_types')">Gig Types</button>
-    <button class="pure-button" onclick="openCity('student_sources')">Student Sources</button>
-    <button class="pure-button" onclick="openCity('lesson_length')">Lesson Length</button>
-    <button class="pure-button" onclick="openCity('student_regularity')">Student Regularity</button>
+    <button class="pure-button" onclick="openTab('instruments')">Instruments</button>
+    <button class="pure-button" onclick="openTab('event_types')">Gig Types</button>
+    <button class="pure-button" onclick="openTab('student_sources')">Student Sources</button>
+    <button class="pure-button" onclick="openTab('lesson_length')">Lesson Length</button>
+    <button class="pure-button" onclick="openTab('student_regularity')">Student Regularity</button>
 </div>
 
-<div id="instruments" class="city" style="display:<?= ($activeTab == 'instruments' ? 'block' : 'none') ?>">
+<div id="instruments" class="settingsTabs" style="display:<?= ($activeTab == 'instruments' ? 'block' : 'none') ?>">
     <h3>Insert the instrument(s) you teach</h3>
     <div class="form-inline">
         <!-- i need to put the current url of the POST route in the action, a different value for every tab of the page: here action="/settings/instruments" -->
@@ -59,8 +59,8 @@
 
 
 
-<!-- <div id="event_types" class="city" style="display:none"> -->
-    <div id="event_types" class="city" style="display:<?= ($activeTab == 'event_types' ? 'block' : 'none') ?>">
+<!-- <div id="event_types" class="settingsTabs" style="display:none"> -->
+    <div id="event_types" class="settingsTabs" style="display:<?= ($activeTab == 'event_types' ? 'block' : 'none') ?>">
     <h3>Insert the gig types you can have</h3>
     <div class="form-inline">
         <form action="/settings/eventTypes" method="post" class="pure-form pure-form-stacked">
@@ -105,7 +105,7 @@
 
 
 
-<div id="student_sources" class="city" style="display:<?= ($activeTab === 'student_sources' ? 'block' : 'none') ?>">
+<div id="student_sources" class="settingsTabs" style="display:<?= ($activeTab === 'student_sources' ? 'block' : 'none') ?>">
     <h3>Insert the sources of your students (private, different schools...)</h3>
     <div class="form-inline">
         <form action="/settings/studentSources" method="post" class="pure-form pure-form-stacked">
@@ -151,7 +151,7 @@
 
 
 
-<div id="lesson_length" class="city" style="display:<?= ($activeTab === 'lesson_length' ? 'block' : 'none') ?>">
+<div id="lesson_length" class="settingsTabs" style="display:<?= ($activeTab === 'lesson_length' ? 'block' : 'none') ?>">
     <h3>Lesson Lengths</h3>
     <div class="form-inline">
         <form action="/settings/lessonLength" method="post" class="pure-form pure-form-stacked">
@@ -195,7 +195,7 @@
 </div>
 
 
-<div id="student_regularity" class="city" style="display:<?= ($activeTab === 'student_regularity' ? 'block' : 'none') ?>">
+<div id="student_regularity" class="settingsTabs" style="display:<?= ($activeTab === 'student_regularity' ? 'block' : 'none') ?>">
     <h3>Insert the regularity of your students (once a week, one time, every two weeks...)</h3>
     <div class="form-inline">
         <form action="/settings/studentRegularity" method="post" class="pure-form pure-form-stacked">
@@ -209,7 +209,7 @@
     </div>
 
 
-<br>
+   <br>
 
     <table class="pure-table pure-table-bordered">
         <thead>
