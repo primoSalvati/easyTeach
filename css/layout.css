@@ -221,4 +221,19 @@ main .display-options {
  top:0px;
  left:0px;
  }
- 
+
+ .inline-button {
+     margin-left: 60px;
+ }
+
+
+ .settings-nav {
+     background-color: #0297FC;
+ }
+ .settings-nav a {
+     color: white;
+ }
+ .settings-nav li :hover {
+     color: #ddd;
+ }
+

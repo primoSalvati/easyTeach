@@ -2,28 +2,33 @@
 
             <ul>
                 <li>
-                    <a href="<?= (Base::instance()->alias('settings')) ?>">
-                        <h3>Instruments</h3>
+                    <a href="<?= (Base::instance()->alias('students')) ?>">
+                        <h3>Students</h3>
                     </a>
                 </li>
                 <li>
                     <a href="<?= (Base::instance()->alias('lessons')) ?>">
-                        <h3>Gig Types</h3>
+                        <h3>Lessons</h3>
                     </a>
                 </li>
                 <li>
                     <a href="<?= (Base::instance()->alias('calendar')) ?>">
-                        <h3>Student Sources</h3>
+                        <h3>Calendar</h3>
                     </a>
                 </li>
                 <li>
                     <a href="<?= (Base::instance()->alias('displayEarnings')) ?>">
-                        <h3>Lesson Length</h3>
+                        <h3>Earnings</h3>
                     </a>
                 </li>
                 <li>
                     <a href="<?= (Base::instance()->alias('gigs')) ?>">
-                        <h3>Student Regularity</h3>
+                        <h3>Gig</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= (Base::instance()->alias('settings')) ?>">
+                        <img src="/media/settings.png" alt="settings_image" class="settings-logo">
                     </a>
                 </li>
             </ul>
@@ -37,8 +42,7 @@
 
 
 <div id="instruments" class="city">
-   <!--  <h3>Insert the instrument(s) you teach</h3> -->
-    <h3><?= ($settingsTitle) ?></h3>
+    <h3>Insert the instrument(s) you teach</h3>
     <div class="form-inline">
         <!-- i need to put the current url of the POST route in the action, a different value for every tab of the page: here action="/settings/instruments" -->
         <form action="" method="post" class="pure-form pure-form-stacked">

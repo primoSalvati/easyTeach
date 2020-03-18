@@ -54,13 +54,19 @@ $f3->route('GET @deleteGig: /gigs/@gid/delete', 'Controllers\GigsController->del
 /* ROUTES for the section: settings */
 
 $f3->route('GET @settings: /settings', 'Controllers\SettingsController->index');
-$f3->route('POST @settingsInstrument: /settings', 'Controllers\SettingsController->insertInstrument');
-$f3->route('POST @settingsEventTypes: /settings', 'Controllers\SettingsController->insertEventTypes');
-/* $f3->route('POST @settingsStudentSources: /settings', 'Controllers\SettingsController->insertStudentSources');
-$f3->route('POST @settingsLessonLength: /settings', 'Controllers\SettingsController->insertLessonLength');
-$f3->route('POST @settingsStudentRegularity: /settings', 'Controllers\SettingsController->insertStudentRegularity'); */
 
-$f3->route('GET @settingsDelete: /settings/@valueid/delete', 'Controllers\SettingsController->deleteValue');
+$f3->route('POST /settings', 'Controllers\SettingsController->insertInstrument');
+
+$f3->route('GET /settings/@valueid/delete', 'Controllers\SettingsController->deleteValue');
+
+
+
+
+
+$f3->route('POST /settings/eventTypes', 'Controllers\SettingsController->insertEventTypes');
+
+ 
+
 
 
 

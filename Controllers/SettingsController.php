@@ -13,22 +13,6 @@ use function Models\valOrNull;
 class SettingsController 
 {
 
-    public function index($f3)
-    {
-
-        $this->selectBox($f3);
-        
-        $f3->set('jScripts', ['/js/settingsTabs.js', '/js/delete.js']);
-       
-
-        $f3->set('pageTitle', 'Settings');
-        $f3->set('mainHeading', 'Settings');
-        $f3->set('content', 'Views/content/settings/settings.html');
-
-        echo Template::instance()->render('/Views/index.html');
-    }
-
-
     protected function selectBox($f3)
     {
         $selectBox = new \Models\MultipleChoiceModel();
@@ -46,14 +30,40 @@ class SettingsController
         $f3->set('lesson_length', $lessonLength);
         $f3->set('student_regularity', $studentRegularity);
     }
-/* nota: credo solo a causa della validierung fallita, debbo creare diverse funzioni di insert */
+
+
+    public function index($f3)
+    {
+
+        $this->selectBox($f3);
+        
+        $f3->set('jScripts', ['/js/settingsTabs.js', '/js/delete.js']);
+
+        /* $f3->set('activeTab', 'instruments'); */
+
+        if (!$f3->get('activeTab')) {
+        $f3->set('activeTab', 'instruments');
+        
+        }
+
+
+
+        $f3->set('pageTitle', 'Settings');
+        $f3->set('mainHeading', 'Settings');
+        $f3->set('content', 'Views/content/settings/settings.html');
+
+        echo Template::instance()->render('/Views/index.html');
+    }
+
+
     public function insertInstrument($f3)
     {
+         $f3->set('activeTab', 'instruments');
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
 
             $gump->validation_rules(array(
-                'instrument' => 'required|min_len,2|max_len, 40',
+                'instrument' => 'min_len,2|max_len, 40',
             ));
 
             $gump->filter_rules(array(
@@ -70,7 +80,7 @@ class SettingsController
             
                 $f3->set('values', $_POST);
 
-
+ 
                 $this->selectBox($f3);
                 $this->index($f3);
 
@@ -88,11 +98,14 @@ class SettingsController
                  else {
                     $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
                 }
+                 
                 $this->selectBox($f3);
                 $this->index($f3);
             }
         }
     }
+
+
 
 
 
@@ -104,7 +117,7 @@ class SettingsController
             $gump = new \GUMP('en');
 
             $gump->validation_rules(array(
-                'event_types'    => 'required|min_len,4|max_len, 40',
+                'event_types'    => 'min_len,4|max_len, 40',
             ));
 
             $gump->filter_rules(array(
@@ -137,6 +150,7 @@ class SettingsController
                  else {
                     $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
                 }
+                $f3->set('activeTab', 'event_types');
                 $this->selectBox($f3);
                 $this->index($f3);
             }
@@ -190,6 +204,7 @@ class SettingsController
                 }
                 $this->selectBox($f3);
                 $this->index($f3);
+                
             }
         }
     }
@@ -202,14 +217,6 @@ class SettingsController
         } else {
             $sm = new \Models\SettingsModel();
             if ($sm->deleteInstrument($vid)) {
-                echo 'Deleted';
-            } elseif ($sm->deleteEventType($vid)) {
-                echo 'Deleted';
-            } elseif ($sm->deleteStudentSource($vid)) {
-                echo 'Deleted';
-            } elseif ($sm->deleteLessonLength($vid)) {
-                echo 'Deleted';
-            } elseif ($sm->deleteStudentRegularity($vid)) {
                 echo 'Deleted';
             } else {
                 echo 'Error';

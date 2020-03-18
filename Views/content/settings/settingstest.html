@@ -2,27 +2,27 @@
 
             <ul>
                 <li>
-                    <a href="<?= (Base::instance()->alias('settings')) ?>">
+                    <a href="{{ 'settings' | alias }}">
                         <h3>Instruments</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= (Base::instance()->alias('lessons')) ?>">
+                    <a href="{{ 'lessons' | alias }}">
                         <h3>Gig Types</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= (Base::instance()->alias('calendar')) ?>">
+                    <a href="{{ 'calendar' | alias }}">
                         <h3>Student Sources</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= (Base::instance()->alias('displayEarnings')) ?>">
+                    <a href="{{ 'displayEarnings' | alias }}">
                         <h3>Lesson Length</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= (Base::instance()->alias('gigs')) ?>">
+                    <a href="{{ 'gigs' | alias }}">
                         <h3>Student Regularity</h3>
                     </a>
                 </li>
@@ -38,13 +38,13 @@
 
 <div id="instruments" class="city">
    <!--  <h3>Insert the instrument(s) you teach</h3> -->
-    <h3><?= ($settingsTitle) ?></h3>
+    <h3>{{ @settingsTitle }}</h3>
     <div class="form-inline">
         <!-- i need to put the current url of the POST route in the action, a different value for every tab of the page: here action="/settings/instruments" -->
         <form action="" method="post" class="pure-form pure-form-stacked">
-            <?php if ($errors['instrument']): ?>
-                <div class="field-error"><?= ($errors['instrument']) ?></div>
-            <?php endif; ?>
+            <check if="{{ @errors.instrument }}">
+                <div class="field-error">{{ @errors.instrument }}</div>
+            </check>
             <input type="text" name="instrument">
 
             <input type="submit" class="pure-button inline-button" value="Save">
@@ -63,21 +63,21 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach (($instruments?:[]) as $inst): ?>
+            <repeat group="{{ @instruments }}" value="{{ @inst }}">
                 <tr>
  <!--                    <form method="POST"></form> -->
-                        <td><?= ($inst['type']) ?></td>
+                        <td>{{ @inst.type }}</td>
 
 <!--                         <td>
                             <input type="submit" class="pure-button" value="Edit"
-                                formaction="/settings/<?= ($inst['id']) ?>/edit">
+                                formaction="/settings/{{ @inst.id }}/edit">
                         </td>
                     </form> -->
                     <td><button class="pure-button btn-delete"
-                            data-url="/settings/<?= ($inst['id']) ?>/delete">Delete</button>
+                            data-url="/settings/{{ @inst.id }}/delete">Delete</button>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            </repeat>
         </tbody>
     </table>
 
