@@ -9,17 +9,18 @@ use \Template;
 
 /* TODO: insert the possibility to have active students, and a student archive, possibly with buttons to reactivate or delete them */
 
-/* TODO: i should give the possibility to insert empty values in the select boxes */
 
 
 class StudentsController 
 {
 
+
     /**
-     * Undocumented function
+     * index
      *
-     * @param [type] $f3
-     * @param [type] $params
+     * @param mixed $f3
+     * @param mixed $params
+     * 
      * @return void
      */
     public function index($f3, $params)
@@ -38,25 +39,6 @@ class StudentsController
 
         echo Template::instance()->render('/Views/index.html');
     }
-
-    /**
-     * index, shows the main students page, which has buttons to either add a new or show all
-     *
-     * @param mixed $f3
-     * @param mixed $params
-     * 
-     * @return void
-     */
-/*   
-function deleted since the page was deleted  public function index($f3, $params)
-    {
-
-        $f3->set('pageTitle', 'Students');
-        $f3->set('mainHeading', 'Students');
-        $f3->set('content', 'Views/content/students/students.html');
-
-        echo Template::instance()->render('/Views/index.html');
-    } */
 
     /**
      * selectBox this function is meant to fetch the data of foreign keys in the table students (in database). The function is defined here as protected and then recalled in other functions with the command $this->selectBox($f3);
@@ -93,9 +75,6 @@ function deleted since the page was deleted  public function index($f3, $params)
     public function getForm($f3, $params)
     {
         $this->selectBox($f3);
-
-        /* $message = "Ol";
-        echo "<script type='text/javascript'>alert('$message');</script>"; */
 
         $f3->set('pageTitle', 'Add Student');
         $f3->set('mainHeading', 'Add Student');
@@ -171,7 +150,7 @@ function deleted since the page was deleted  public function index($f3, $params)
 
 
     /**
-     * getCompiledForm
+     * getCompiledForm, to edit a student, gets the student's data and assigns some of them to the student form with the array $values
      *
      * @param mixed $f3
      * @param mixed $params
@@ -199,6 +178,14 @@ function deleted since the page was deleted  public function index($f3, $params)
     
     }
 
+    /**
+     * editStudent, insert the data from the form, changing the current values
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function editStudent($f3, $params)
     {
         $sid = $params['sid'];
@@ -262,11 +249,13 @@ function deleted since the page was deleted  public function index($f3, $params)
     }
 
 
+    
     /**
-     * Undocumented function
+     * studentDetails, the student price can be setted as empty, and if empty, it will be shown as 0
      *
-     * @param [type] $f3
-     * @param [type] $params
+     * @param mixed $f3
+     * @param mixed $params
+     * 
      * @return void
      */
     public function studentDetails($f3, $params)
@@ -296,14 +285,16 @@ function deleted since the page was deleted  public function index($f3, $params)
     }
 
 
+ 
+    
     /**
-     * Undocumented function
+     * deleteStudent
      *
-     * @param [type] $f3
-     * @param [type] $params
+     * @param mixed $f3
+     * @param mixed $params
+     * 
      * @return void
      */
-    
     public function deleteStudent($f3, $params)
     {
         $sid = $params['sid'];

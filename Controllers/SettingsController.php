@@ -10,9 +10,16 @@ use function Models\dump_and_die;
 use function Models\dumpthisvalue;
 use function Models\valOrNull;
 
-class SettingsController 
-{/* TODO: cambia i nomi delle classi dei tabs da city a  nomi accettabili! */
+class SettingsController
+{
 
+    /**
+     * selectBox this function is meant to fetch the data of foreign keys in the table students (in database). The function is defined here as protected and then recalled in other functions with the command $this->selectBox($f3);
+     *
+     * @param mixed $f3
+     * 
+     * @return void
+     */
     protected function selectBox($f3)
     {
         $selectBox = new \Models\MultipleChoiceModel();
@@ -36,21 +43,25 @@ class SettingsController
     }
 
 
+    /**
+     * index the if statement is meant to assign a default value of display to the css tab "instruments", and in the every insert section, there is some code at the beginning that instruct the program to mantain the tab active after the post of the correponding values, without going back to the default tab "instruments"
+     *
+     * @param mixed $f3
+     * 
+     * @return void
+     */
     public function index($f3)
     {
 
         $this->selectBox($f3);
-        
+
         $f3->set('jScripts', ['/js/delete.js', '/js/settingsTabs.js']);
 
         /* $f3->set('activeTab', 'instruments'); */
 
         if (!$f3->get('activeTab')) {
-        $f3->set('activeTab', 'instruments');
-        
+            $f3->set('activeTab', 'instruments');
         }
-
-
 
         $f3->set('pageTitle', 'Settings');
         $f3->set('mainHeading', 'Settings');
@@ -60,9 +71,16 @@ class SettingsController
     }
 
 
+    /**
+     * insertInstruments
+     *
+     * @param mixed $f3
+     * 
+     * @return void
+     */
     public function insertInstruments($f3)
-    {
-         $f3->set('activeTab', 'instruments');
+    {/* the code mentione in the index function documentation */
+        $f3->set('activeTab', 'instruments');
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
 
@@ -81,13 +99,12 @@ class SettingsController
             if ($validData === false) {
                 $errors = $gump->get_errors_array();
                 $f3->set('errors', $errors);
-            
+
                 $f3->set('values', $_POST);
 
- 
+
                 $this->selectBox($f3);
                 $this->index($f3);
-
             } else {
                 $sm = new \Models\SettingsModel();
                 $instrumentInserted = $sm->insertInstrument($validData['instrument']);
@@ -95,14 +112,12 @@ class SettingsController
 
 
                 if ($instrumentInserted === true) {
-                  
+
                     $f3->set('alertScript', 'alert(\'Success! Value inserted.\');');
-                 
-                } 
-                 else {
+                } else {
                     $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
                 }
-                 
+
                 $this->selectBox($f3);
                 $this->index($f3);
             }
@@ -110,7 +125,15 @@ class SettingsController
     }
 
 
-        public function deleteInstruments($f3, $params)
+    /**
+     * deleteInstruments, like the following sections, takes the valie od the id variable in the url
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
+    public function deleteInstruments($f3, $params)
     {
         $vid = $params['instrId'];
         if (!filter_var($vid, FILTER_VALIDATE_INT)) {
@@ -131,6 +154,13 @@ class SettingsController
 
 
 
+    /**
+     * insertEventTypes
+     *
+     * @param mixed $f3
+     * 
+     * @return void
+     */
     public function insertEventTypes($f3)
     {
         $f3->set('activeTab', 'event_types');
@@ -152,23 +182,20 @@ class SettingsController
             if ($validData === false) {
                 $errors = $gump->get_errors_array();
                 $f3->set('errors', $errors);
-                
+
                 $f3->set('values', $_POST);
 
 
                 $this->selectBox($f3);
                 $this->index($f3);
-
             } else {
                 $sm = new \Models\SettingsModel();
                 $eventTypeInserted = $sm->insertEventType($validData['event_types']);
 
                 if ($eventTypeInserted === true) {
-                
+
                     $f3->set('alertScript', 'alert(\'Success! Value inserted.\');');
-                  
-                } 
-                 else {
+                } else {
                     $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
                 }
                 $f3->set('activeTab', 'event_types');
@@ -178,7 +205,16 @@ class SettingsController
         }
     }
 
-            public function deleteEventTypes($f3, $params)
+
+    /**
+     * deleteEventTypes
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
+    public function deleteEventTypes($f3, $params)
     {
         $vid = $params['evTypeId'];
         if (!filter_var($vid, FILTER_VALIDATE_INT)) {
@@ -193,9 +229,16 @@ class SettingsController
         }
     }
 
-      public function insertStudentSources($f3)
+    /**
+     * insertStudentSources
+     *
+     * @param mixed $f3
+     * 
+     * @return void
+     */
+    public function insertStudentSources($f3)
     {
-         $f3->set('activeTab', 'student_sources');
+        $f3->set('activeTab', 'student_sources');
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
 
@@ -214,13 +257,12 @@ class SettingsController
             if ($validData === false) {
                 $errors = $gump->get_errors_array();
                 $f3->set('errors', $errors);
-            
+
                 $f3->set('values', $_POST);
 
- 
+
                 $this->selectBox($f3);
                 $this->index($f3);
-
             } else {
                 $sm = new \Models\SettingsModel();
                 $StudentSourcesInserted = $sm->insertStudentSource($validData['student_sources']);
@@ -228,21 +270,27 @@ class SettingsController
 
 
                 if ($StudentSourcesInserted === true) {
-                  
+
                     $f3->set('alertScript', 'alert(\'Success! Value inserted.\');');
-                 
-                } 
-                 else {
+                } else {
                     $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
                 }
-                 
+
                 $this->selectBox($f3);
                 $this->index($f3);
             }
         }
     }
 
-            public function deleteStudentSources($f3, $params)
+    /**
+     * deleteStudentSources
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
+    public function deleteStudentSources($f3, $params)
     {
         $ssid = $params['stSourceId'];
         if (!filter_var($ssid, FILTER_VALIDATE_INT)) {
@@ -259,9 +307,16 @@ class SettingsController
 
 
 
+    /**
+     * insertLessonLengths
+     *
+     * @param mixed $f3
+     * 
+     * @return void
+     */
     public function insertLessonLengths($f3)
     {
-        
+
 
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
@@ -283,14 +338,13 @@ class SettingsController
                 $errors = $gump->get_errors_array();
                 $f3->set('activeTab', 'lesson_length');
                 $f3->set('errors', $errors);
-                
-            
+
+
                 $f3->set('values', $_POST);
 
- 
+
                 $this->selectBox($f3);
                 $this->index($f3);
-
             } else {
                 $sm = new \Models\SettingsModel();
                 $lessonLengthInserted = $sm->insertLessonLength($validData['lesson_length']);
@@ -298,11 +352,9 @@ class SettingsController
 
 
                 if ($lessonLengthInserted === true) {
-                  
+
                     $f3->set('alertScript', 'alert(\'Success! Value inserted.\');');
-                 
-                } 
-                 else {
+                } else {
                     $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
                 }
                 $f3->set('activeTab', 'lesson_length');
@@ -313,6 +365,14 @@ class SettingsController
     }
 
 
+    /**
+     * deleteLessonLengths
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function deleteLessonLengths($f3, $params)
     {
         $vid = $params['lesLenghId'];
@@ -330,9 +390,16 @@ class SettingsController
 
 
 
-        public function insertStudentRegularities($f3)
+    /**
+     * insertStudentRegularities
+     *
+     * @param mixed $f3
+     * 
+     * @return void
+     */
+    public function insertStudentRegularities($f3)
     {
-        
+
 
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
@@ -354,14 +421,13 @@ class SettingsController
                 $errors = $gump->get_errors_array();
                 $f3->set('activeTab', 'student_regularity');
                 $f3->set('errors', $errors);
-                
-            
+
+
                 $f3->set('values', $_POST);
 
- 
+
                 $this->selectBox($f3);
                 $this->index($f3);
-
             } else {
                 $sm = new \Models\SettingsModel();
                 $studentRegularityInserted = $sm->insertStudentRegularity($validData['student_regularity']);
@@ -369,11 +435,9 @@ class SettingsController
 
 
                 if ($studentRegularityInserted === true) {
-                  
+
                     $f3->set('alertScript', 'alert(\'Success! Value inserted.\');');
-                 
-                } 
-                 else {
+                } else {
                     $f3->set('alertScript', 'alert(\'Error! Value couldn\'t be inserted.\');');
                 }
                 $f3->set('activeTab', 'student_regularity');
@@ -384,7 +448,15 @@ class SettingsController
     }
 
 
-        public function deleteStudentRegularities($f3, $params)
+    /**
+     * deleteStudentRegularities
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
+    public function deleteStudentRegularities($f3, $params)
     {
         $vid = $params['stRegId'];
         if (!filter_var($vid, FILTER_VALIDATE_INT)) {
@@ -398,12 +470,4 @@ class SettingsController
             }
         }
     }
-
-
-
-
-
-
-
-
 }

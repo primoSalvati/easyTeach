@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+/* namespace Controllers;
 
 use \Template;
 
@@ -20,4 +20,4 @@ class Controller
     function afterroute()
     {
     }
-}
+} */

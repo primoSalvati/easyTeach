@@ -5,6 +5,11 @@ namespace Models;
 class GigsModel extends Model
 {
 
+ /**
+  * gigs. this function collects all data from events which are not music lessons (id != 1, the only fix event in database), and, throug left joins, takes the type from the foreign_key event_types_id, the date is formatted, to have a confortable view.
+  *
+  * @return array
+  */
  public function gigs(): array
     
  {
@@ -29,6 +34,18 @@ class GigsModel extends Model
  }
 
 
+ /**
+  * insertGig
+  *
+  * @param mixed $date
+  * @param mixed $time
+  * @param mixed $address
+  * @param mixed $earning
+  * @param mixed $event_types_id
+  * @param mixed $notes
+  * 
+  * @return bool
+  */
  public function insertGig($date, $time, $address, $earning, $event_types_id, $notes): bool
  {
      $gigInserted = $this->db->exec('INSERT INTO `events` (`date`, `time`, `address`, `earning`, `event_types_id`, `notes`) VALUES (?, ?, ?, ?, ?, ?)' , [$date, $time, $address, $earning, $event_types_id, $notes]);
@@ -37,6 +54,13 @@ class GigsModel extends Model
  }
 
 
+ /**
+  * gigDetails, gives some detailsof an event, similar to gigs() but with the id requested from the user
+  *
+  * @param integer $id
+  * 
+  * @return void
+  */
  public function gigDetails(int $id)
     {   
         $gigDetails = $this->db->exec(
@@ -61,6 +85,19 @@ class GigsModel extends Model
         return $gigDetails[0];
     }
 
+        /**
+         * editGig
+         *
+         * @param mixed $event_types_id
+         * @param mixed $earning
+         * @param mixed $date
+         * @param mixed $time
+         * @param mixed $address
+         * @param mixed $notes
+         * @param integer $id
+         * 
+         * @return bool
+         */
         public function editGig($event_types_id, $earning, $date, $time, $address, $notes, int $id): bool
     {
 

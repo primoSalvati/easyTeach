@@ -8,6 +8,14 @@ use \Template;
 class Homepage 
 {
 
+  /**
+   * index
+   *
+   * @param mixed $f3
+   * @param mixed $params
+   * 
+   * @return void
+   */
   public function index($f3, $params)
   {
     // https://fatfreeframework.com/3.6/framework-variables

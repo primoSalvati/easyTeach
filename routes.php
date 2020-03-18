@@ -28,8 +28,6 @@ $f3->route('GET @lessonForm: /lessons/@lid/edit', 'Controllers\LessonsController
 $f3->route('POST @editLesson: /lessons/@lid/edit', 'Controllers\LessonsController->editLesson');
 $f3->route('GET @deleteLesson: /lessons/@lid/delete', 'Controllers\LessonsController->deleteLesson');
 
-/* TODO: validare nel server se uno studente esiste già! */
-
 /* ROUTES for the section: calendar */
 
 $f3->route('GET @calendar: /calendar', 'Controllers\CalendarController->calendarEvents');
