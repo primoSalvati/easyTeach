@@ -68,34 +68,33 @@ class EarningsController
                 $f3->set('selected_source', $studentSourcesId);
                 $eventTypesId = $_POST['eventTypeId'];
                 $f3->set('selected_eventType', $eventTypesId);
-            }
-/* 
+                /* 
             if (!empty($_POST['selectByGigs'])) {
                 $eventTypesId = $_POST['eventTypeId'];
                 $f3->set('selected_eventType', $eventTypesId);
             } */
 
-            /* $studentSourcesId = $_POST['studentSourceId']; */
-            $startDate = $_POST['startDate'];
-            $endDate = $_POST['endDate'];
-            /* $eventTypesId = $_POST['eventTypeId']; */
+                /* $studentSourcesId = $_POST['studentSourceId']; */
+                $startDate = $_POST['startDate'];
+                $endDate = $_POST['endDate'];
+                /* $eventTypesId = $_POST['eventTypeId']; */
+
+                $data = new \Models\EarningsModel();
+
+                $totalEarnings = $data->earningsFiltered($_POST['singleSelect'], $studentSourcesId, $eventTypesId, $startDate, $endDate);
+
+                /* dumpthisvalue($totalEarnings); */
 
 
-
-            $data = new \Models\EarningsModel();
-
-            $totalEarnings = $data->earningsFiltered($studentSourcesId, $eventTypesId, $startDate, $endDate);
-
-            /* dumpthisvalue($totalEarnings); */
+                $f3->set('sum', $totalEarnings[0]['total']);
+            } else {
+                $f3->set('sum', 0);
+            }
 
             $this->selectBox($f3);
 
 
-
-            $f3->set('sum', $totalEarnings[0]['total']);
-/*             $f3->set('selected_source', $studentSourcesId);
-            $f3->set('selected_eventType', $eventTypesId); */
-
+            $f3->set('singleSelect', $_POST['singleSelect']);
             $f3->set('startDate', $startDate);
             $f3->set('endDate', $endDate);
 

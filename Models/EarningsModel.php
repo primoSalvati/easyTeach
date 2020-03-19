@@ -31,7 +31,7 @@ class EarningsModel extends Model
 
 
 
-    public function earningsFiltered($studentSourcesId, $startDate, $endDate, $eventTypeId): array
+    public function earningsFiltered($selectType, $studentSourcesId, $eventTypeId, $startDate, $endDate): array
     {
         $stmt = 'SELECT SUM(`earning`) AS `total`
                                        FROM `events` AS `e`
@@ -42,15 +42,15 @@ class EarningsModel extends Model
                                        (e.date BETWEEN IFNULL(?,"1900-01-01") 
                                            AND IFNULL(?,now()))
                                        and    
-                                       ((? != "" and (s.student_sources_id = ifnull(?,"") or ? is null))
+                                       ((? = "sourceType" and (s.student_sources_id = ifnull(?,"") or ? is null))
                                        or
-                                       (? != "" and (e.event_types_id = ifnull(?,"") or ? is null)))';
+                                       (? = "gigType" and (e.event_types_id = ifnull(?,"") or ? is null)))';
 
 
         $earnings = $this->db->exec($stmt, [
             valOrNull($startDate), valOrNull($endDate),
-             valOrNull($studentSourcesId), valOrNull($studentSourcesId),
-             valOrNull($eventTypeId), valOrNull($eventTypeId)
+            $selectType,valOrNull($studentSourcesId), valOrNull($studentSourcesId),
+            $selectType,valOrNull($eventTypeId), valOrNull($eventTypeId)
         ]);
 
         file_put_contents('/users/primosalvati/debug.log',$this->db->log() , FILE_APPEND);

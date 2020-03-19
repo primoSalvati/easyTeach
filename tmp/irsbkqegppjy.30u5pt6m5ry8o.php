@@ -10,7 +10,8 @@
 
             <legend><strong>Earnings from Lessons</strong></legend>
             <label for="singleSelect">Activate</label>
-            <input type="radio" name="singleSelect">
+            <input type="radio" name="singleSelect" value="sourceType"
+                <?= (($singleSelect == "sourceType") ? ('checked') : ('')) ?>>
 
             <label for="studentSourceId">Source</label>
             <select name="studentSourceId">
@@ -30,8 +31,9 @@
 
             <legend><strong>Earnings from Gigs</strong></legend>
             <label for="singleSelect">Activate</label>
-            <input type="radio" name="singleSelect">
-            <!-- <input type="checkbox" name="selectByGigs" <?= (!empty($selected_eventType) ? ('checked') : ('')) ?>> -->
+            <input type="radio" name="singleSelect" value="gigType"
+                <?= (($singleSelect == "gigType") ? ('checked') : ('')) ?>>
+
 
             <label for="eventTypeId">Source</label>
             <select name="eventTypeId">
