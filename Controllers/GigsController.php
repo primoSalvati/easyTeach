@@ -12,6 +12,14 @@ use function Models\valOrNull;
 
 class GigsController 
 {
+    /**
+     * index, show the list of gigs in a table where the user can see details edit and delete each one
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function index($f3, $params)
     {
 
@@ -31,6 +39,13 @@ class GigsController
     }
 
 
+    /**
+     * selectBox selectBox this function is meant to fetch the data of foreign keys in the table students (in database). The function is defined here as protected and then recalled in other functions with the command $this->selectBox($f3);
+     *
+     * @param mixed $f3
+     * 
+     * @return void
+     */
     protected function selectBox($f3)
     {
         $selectBox = new \Models\MultipleChoiceModel();
@@ -42,6 +57,14 @@ class GigsController
         $f3->set('event_types', $eventTypes);
     }
 
+    /**
+     * gigForm shows a gig form, takes the values of the select box from the function above (filtered without the music lesson), and gives it a default current date and time
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function gigForm($f3, $params)
     {
         $this->selectBox($f3);
@@ -62,6 +85,14 @@ class GigsController
         echo Template::instance()->render('/Views/index.html');
     }
 
+    /**
+     * insertGig, similar style to insert student, or insert lesson
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function insertGig($f3, $params)
     {
         if (!empty($_POST)) {
@@ -109,17 +140,11 @@ class GigsController
 
                 if ($gigInserted === true) {
 
-
-                    /* $message = "New gig successfully inserted!";
-                    echo "<script type='text/javascript'>alert('$message');</script>"; */
                     $f3->set('alertSuccess', 'New gig successfully inserted!');
                 } else {
 
-                    /* $message = "Error! The gig couldn't be inserted.";
-                    echo "<script type='text/javascript'>alert('$message');</script>";  */
                     $f3->set('alertError', 'Error! The gig couldn\'t be inserted.');
-                    /* to display the success with a better javascript alert, todo also for students detail and lesson details */
-                    /* $f3->set('jScripts', ['/js/earningAlert.js']); */
+
                 }
 
 
@@ -132,6 +157,14 @@ class GigsController
         }
     }
 
+    /**
+     * gigDetails similar style to  student details, or  lesson details
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function gigDetails($f3, $params)
     {
         $gid = $params['gid'];
@@ -154,6 +187,14 @@ class GigsController
         echo Template::instance()->render('/Views/index.html');
     }
 
+    /**
+     * getCompiledForm similar style of other getCompiledForm functions, present in students and lessons Controllers
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function getCompiledForm($f3, $params)
     {
         $gid = $params['gid'];
@@ -175,6 +216,14 @@ class GigsController
         }
     }
 
+    /**
+     * editGig similar style to edit student, or edit lesson
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function editGig($f3, $params)
     {
         $gid = $params['gid'];
@@ -237,6 +286,14 @@ class GigsController
         }
     }
 
+    /**
+     * deleteGig, given the id
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function deleteGig($f3, $params)
     {
         $gid = $params['gid'];

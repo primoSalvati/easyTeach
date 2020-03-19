@@ -20,7 +20,7 @@ class EarningsModel extends Model
 
 
     /**
-     * earningsFiltered, fetches the earnings with additional information to be filtered: source(student source)
+     * earningsFiltered, fetches the earnings with additional information to be filtered: source(student source), event_type(for concerts, compositions etc) and star/end date
      *
      * @param mixed $studentSourcesId
      * @param mixed $startDate
@@ -29,22 +29,31 @@ class EarningsModel extends Model
      * @return array
      */
 
-     /* attenzione, devo filtrare anche per event types id!!! aggiungendo un altro select box? o forse meglio tutto da un unico select box,,,se possibile */
 
-    public function earningsFiltered($studentSourcesId, $startDate, $endDate): array
+
+    public function earningsFiltered($studentSourcesId, $startDate, $endDate, $eventTypeId): array
     {
         $stmt = 'SELECT SUM(`earning`) AS `total`
                                        FROM `events` AS `e`
                                        LEFT JOIN `students` AS `s` ON s.id = e.students_id
-                                       /* LEFT JOIN `event_types` AS `t` ON t.id = e.event_types_id */
+                                       LEFT JOIN `event_types` AS `t` ON t.id = e.event_types_id 
 
-                                       WHERE (s.student_sources_id = ifnull(?,"") or ? is null)
-                                       and (e.date BETWEEN IFNULL(?,"1900-01-01") 
+                                       WHERE 
+                                       (e.date BETWEEN IFNULL(?,"1900-01-01") 
                                            AND IFNULL(?,now()))
-                                       /* and (e.event_types_id = ifnull(?,"") or ? is null) */';
+                                       and    
+                                       ((? != "" and (s.student_sources_id = ifnull(?,"") or ? is null))
+                                       or
+                                       (? != "" and (e.event_types_id = ifnull(?,"") or ? is null)))';
 
 
-        $earnings = $this->db->exec($stmt, [valOrNull($studentSourcesId), valOrNull($studentSourcesId), valOrNull($startDate), valOrNull($endDate)]);
+        $earnings = $this->db->exec($stmt, [
+            valOrNull($startDate), valOrNull($endDate),
+             valOrNull($studentSourcesId), valOrNull($studentSourcesId),
+             valOrNull($eventTypeId), valOrNull($eventTypeId)
+        ]);
+
+        file_put_contents('/users/primosalvati/debug.log',$this->db->log() , FILE_APPEND);
         return $earnings;
     }
 

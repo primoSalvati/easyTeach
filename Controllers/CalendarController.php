@@ -7,6 +7,14 @@ use \Template;
 class CalendarController 
 {
 
+    /**
+     * calendarEvents, takes the json data from the script coming from the calendar and encodes it to give it back to the events, also, puts some external javaScript and Css urls in arrays, to give them to the template
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function calendarEvents($f3, $params)
     {
         $cm = new \Models\CalendarModel();

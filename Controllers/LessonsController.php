@@ -12,6 +12,14 @@ use function Models\valOrNull;
 
 class LessonsController 
 {
+    /**
+     * index
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function index($f3, $params)
     {
 
@@ -30,13 +38,20 @@ class LessonsController
     }
 
 
+    /**
+     * selectStudent, the function fetches information about students, stores them in the array $students, and returns them on a html table with students to be selected for a lesson, so that the lesson form can have information about students inside
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function selectStudent($f3, $params)
     {
 
         $sm = new \Models\StudentsModel();
         $students = $sm->students();
         $f3->set('students', $students);
-        /* TODO: maybe it's better to show the students details on a javascript alert, so that the application doesn't need to lead to another page */
         $f3->set('jScripts', ['/js/delete.js']);
 
         $f3->set('pageTitle', 'Select Student');
@@ -46,6 +61,14 @@ class LessonsController
         echo Template::instance()->render('/Views/index.html');
     }
 
+    /**
+     * lessonForm, given a student id from the previous page, the function gives the form some prepared information, like student name, played instrument, (default) current date and time, student price as earning, address (taken from student source, in case of a private student, there is a conversion to home, as specified below).
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function lessonForm($f3, $params)
     {
         $sid = $params['sid'];
@@ -77,18 +100,25 @@ class LessonsController
         }
     }
 
+    /**
+     * insertLesson, similar to insertStudent(), with GUMP validation
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function insertLesson($f3, $params)
     {
         if (!empty($_POST)) {
             $gump = new \GUMP('en');
 
 
-            
-/* TODO: important! when receiving the lesson form, i should see at least the last notes, or even have a link to a page with all notes from the one student! */
+        
             $gump->validation_rules(array(
                 'date' => 'required|date',
                 'time' => 'required',
-                'earning' => 'required|numeric',
+                'earning' => 'numeric',
                 'address' => 'max_len, 50',
                 'notes' => 'max_len, 2500',
                 'links' => 'valid_url',
@@ -149,6 +179,14 @@ class LessonsController
 
 
 
+    /**
+     * lessonDetails, the function fetches the details of a lesson. Additionally, it the earning field is empty, it will be shown as 0 
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function lessonDetails($f3, $params)
     {
         $lid = $params['lid'];
@@ -169,7 +207,6 @@ class LessonsController
 
         $f3->set('lessonDetails', $lessonDetails);
 
-        $f3->set('jScripts', ['/js/lessonDetails.js']);
 
         $f3->set('pageTitle', 'Lesson Details');
         $f3->set('mainHeading', 'Lesson Details');
@@ -179,6 +216,14 @@ class LessonsController
     }
 
 
+    /**
+     * getCompiledForm, to edit a lesson, gets the lesson's data and assigns some of them to the lesson form with the array $values
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function getCompiledForm($f3, $params)
     {
         $lid = $params['lid'];
@@ -200,6 +245,13 @@ class LessonsController
         }
     }
 
+    /**
+     * selectBox this function is meant to fetch the data of foreign keys in the table students (in database). The function is defined here as protected and then recalled in other functions with the command $this->selectBox($f3);
+     *
+     * @param mixed $f3
+     * 
+     * @return void
+     */
         protected function selectBox($f3)
     {
         $selectBox = new \Models\MultipleChoiceModel();
@@ -217,6 +269,14 @@ class LessonsController
 
 
 
+    /**
+     * editLesson updates the data from the form, changing the current values
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
         public function editLesson($f3, $params)
     {
         $lid = $params['lid'];
@@ -285,6 +345,14 @@ class LessonsController
     }
 
 
+    /**
+     * deleteLesson, given the id in $params
+     *
+     * @param mixed $f3
+     * @param mixed $params
+     * 
+     * @return void
+     */
     public function deleteLesson($f3, $params)
     {
         $lid = $params['lid'];

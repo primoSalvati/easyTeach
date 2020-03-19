@@ -179,7 +179,7 @@ class StudentsController
     }
 
     /**
-     * editStudent, insert the data from the form, changing the current values
+     * editStudent, updates the data from the form, changing the current values
      *
      * @param mixed $f3
      * @param mixed $params

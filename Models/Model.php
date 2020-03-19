@@ -9,7 +9,7 @@ abstract class Model
 
 
     /**
-     * __construct
+     * __construct   database connection
      *
      * @return void
      */
@@ -42,9 +42,13 @@ function valOrNull($val)
     return $val;
 }
 
-
-/* functions for debugging */
-
+/**
+ * debug_to_console, function for debugging
+ *
+ * @param mixed $data
+ * 
+ * @return void
+ */
 function debug_to_console($data)
 {
     $output = $data;
@@ -54,7 +58,13 @@ function debug_to_console($data)
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 
-
+/**
+ * dump_and_die, function for debugging, a well formatted var_dump with a kind of breakpoint
+ *
+ * @param mixed $data
+ * 
+ * @return void
+ */
 function dump_and_die($data)
 {
     echo '<pre>';
@@ -63,6 +73,13 @@ function dump_and_die($data)
     echo '</pre>';
 }
 
+/**
+ * dumpthisvalue, function for debugging, just a well formatted var_dump 
+ *
+ * @param mixed $data
+ * 
+ * @return void
+ */
 function dumpthisvalue($data)
 {
     echo '<pre>';
